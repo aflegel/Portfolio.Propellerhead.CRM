@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Propellerhead.CRM", "Propellerhead.CRM\Propellerhead.CRM.csproj", "{652117CF-7954-4981-B243-74EF58572927}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C2DA38D-5F2A-40FE-9586-1AE83F82928C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{652117CF-7954-4981-B243-74EF58572927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652117CF-7954-4981-B243-74EF58572927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652117CF-7954-4981-B243-74EF58572927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652117CF-7954-4981-B243-74EF58572927}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4340BBCC-55CD-4B5B-9C68-49189BC531B2}
+	EndGlobalSection
+EndGlobal

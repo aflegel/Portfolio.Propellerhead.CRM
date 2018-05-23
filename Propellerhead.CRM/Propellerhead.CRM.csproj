@@ -1,0 +1,202 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="wwwroot\app\app.component.js" />
+	  <Content Remove="wwwroot\app\app.component.js.map" />
+	  <Content Remove="wwwroot\app\app.module.js" />
+	  <Content Remove="wwwroot\app\app.module.js.map" />
+	  <Content Remove="wwwroot\app\app.routing.js" />
+	  <Content Remove="wwwroot\app\app.routing.js.map" />
+	  <Content Remove="wwwroot\app\Framework\CharacterPipes.js" />
+	  <Content Remove="wwwroot\app\Framework\CharacterPipes.js.map" />
+	  <Content Remove="wwwroot\app\Framework\dynamic.component.js" />
+	  <Content Remove="wwwroot\app\Framework\dynamic.component.js.map" />
+	  <Content Remove="wwwroot\app\Framework\EncounterPipes.js" />
+	  <Content Remove="wwwroot\app\Framework\EncounterPipes.js.map" />
+	  <Content Remove="wwwroot\app\Framework\LootPipes.js" />
+	  <Content Remove="wwwroot\app\Framework\LootPipes.js.map" />
+	  <Content Remove="wwwroot\app\Framework\ModalDynamicComponent.js" />
+	  <Content Remove="wwwroot\app\Framework\ModalDynamicComponent.js.map" />
+	  <Content Remove="wwwroot\app\Framework\TextboxValidatorComponent.js" />
+	  <Content Remove="wwwroot\app\Framework\TextboxValidatorComponent.js.map" />
+	  <Content Remove="wwwroot\app\Framework\TransactionPipes.js" />
+	  <Content Remove="wwwroot\app\Framework\TransactionPipes.js.map" />
+	  <Content Remove="wwwroot\app\Framework\_Routing.js" />
+	  <Content Remove="wwwroot\app\Framework\_Routing.js.map" />
+	  <Content Remove="wwwroot\app\Home\contact.component.js" />
+	  <Content Remove="wwwroot\app\Home\contact.component.js.map" />
+	  <Content Remove="wwwroot\app\Home\ContactComponent.js" />
+	  <Content Remove="wwwroot\app\Home\ContactComponent.js.map" />
+	  <Content Remove="wwwroot\app\Home\index.component.js" />
+	  <Content Remove="wwwroot\app\Home\index.component.js.map" />
+	  <Content Remove="wwwroot\app\Home\login.component.js" />
+	  <Content Remove="wwwroot\app\Home\login.component.js.map" />
+	  <Content Remove="wwwroot\app\Home\LoginComponent.js" />
+	  <Content Remove="wwwroot\app\Home\LoginComponent.js.map" />
+	  <Content Remove="wwwroot\app\Home\register.component.js" />
+	  <Content Remove="wwwroot\app\Home\register.component.js.map" />
+	  <Content Remove="wwwroot\app\Home\RegisterComponent.js" />
+	  <Content Remove="wwwroot\app\Home\RegisterComponent.js.map" />
+	  <Content Remove="wwwroot\app\Models\Account.js" />
+	  <Content Remove="wwwroot\app\Models\Account.js.map" />
+	  <Content Remove="wwwroot\app\Models\Financial.js" />
+	  <Content Remove="wwwroot\app\Models\Financial.js.map" />
+	  <Content Remove="wwwroot\app\Models\Framework.js" />
+	  <Content Remove="wwwroot\app\Models\Framework.js.map" />
+	  <Content Remove="wwwroot\app\Models\Security.js" />
+	  <Content Remove="wwwroot\app\Models\Security.js.map" />
+	  <Content Remove="wwwroot\app\Models\_Routing.js" />
+	  <Content Remove="wwwroot\app\Models\_Routing.js.map" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="bootstrap" Version="4.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-rc1-final" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="2.0.0" />
+		<PackageReference Include="AspNet.Security.OAuth.Introspection" Version="2.0.0-rc1-final" />
+		<PackageReference Include="Humanizer.xproj" Version="2.1.0" />
+
+		<PackageReference Include="OpenIddict" Version="2.0.0-rc2-0792" />
+		<PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0-rc2-0792" />
+		<PackageReference Include="OpenIddict.Mvc" Version="2.0.0-rc2-0792" />
+	</ItemGroup>
+	<ItemGroup>
+		<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+		<DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="wwwroot\lib\glyphicons-halflings\.npmignore" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\css\glyphicons-halflings.css.map" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\fonts\.placeholder" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\gulpfile.es5.js" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\gulpfile.js" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\LICENSE" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\README.md" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\scss\glyphicons-halflings.scss" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\scss\glyphicons-halflings\_bonus.scss" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\scss\glyphicons-halflings\_glyphicons-halflings.scss" />
+	  <None Include="wwwroot\lib\glyphicons-halflings\scss\glyphicons-halflings\_variables.scss" />
+	  <None Include="wwwroot\lib\materialize-css\CHANGELOG.md" />
+	  <None Include="wwwroot\lib\materialize-css\dist\fonts\roboto\Roboto-Bold.woff2" />
+	  <None Include="wwwroot\lib\materialize-css\dist\fonts\roboto\Roboto-Light.woff2" />
+	  <None Include="wwwroot\lib\materialize-css\dist\fonts\roboto\Roboto-Medium.woff2" />
+	  <None Include="wwwroot\lib\materialize-css\dist\fonts\roboto\Roboto-Regular.woff2" />
+	  <None Include="wwwroot\lib\materialize-css\dist\fonts\roboto\Roboto-Thin.woff2" />
+	  <None Include="wwwroot\lib\materialize-css\dist\js\materialize.js" />
+	  <None Include="wwwroot\lib\materialize-css\dist\js\materialize.min.js" />
+	  <None Include="wwwroot\lib\materialize-css\extras\noUiSlider\nouislider.js" />
+	  <None Include="wwwroot\lib\materialize-css\extras\noUiSlider\nouislider.min.js" />
+	  <None Include="wwwroot\lib\materialize-css\Gruntfile.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\animation.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\buttons.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\cards.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\carousel.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\character_counter.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\chips.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\collapsible.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\date_picker\picker.date.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\date_picker\picker.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\date_picker\picker.time.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\dropdown.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\forms.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\global.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\hammer.min.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\initial.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\jquery.easing.1.4.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\jquery.hammer.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\materialbox.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\modal.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\parallax.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\pushpin.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\scrollFire.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\scrollspy.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\sideNav.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\slider.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\tabs.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\tapTarget.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\toasts.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\tooltip.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\transitions.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\velocity.min.js" />
+	  <None Include="wwwroot\lib\materialize-css\js\waves.js" />
+	  <None Include="wwwroot\lib\materialize-css\LICENSE" />
+	  <None Include="wwwroot\lib\materialize-css\README.md" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\date_picker\_default.date.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\date_picker\_default.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\date_picker\_default.time.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_checkboxes.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_file-input.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_forms.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_input-fields.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_radio-buttons.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_range.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_select.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\forms\_switches.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_badges.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_buttons.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_cards.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_carousel.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_chips.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_collapsible.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_color.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_dropdown.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_global.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_grid.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_icons-material-design.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_materialbox.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_modal.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_navbar.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_normalize.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_preloader.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_pulse.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_roboto.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_sideNav.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_slider.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_table_of_contents.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_tabs.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_tapTarget.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_toast.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_tooltip.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_transitions.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_typography.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_variables.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\components\_waves.scss" />
+	  <None Include="wwwroot\lib\materialize-css\sass\materialize.scss" />
+	  <None Include="wwwroot\lib\mdi\css\materialdesignicons.css.map" />
+	  <None Include="wwwroot\lib\mdi\css\materialdesignicons.min.css.map" />
+	  <None Include="wwwroot\lib\mdi\fonts\materialdesignicons-webfont.svg" />
+	  <None Include="wwwroot\lib\mdi\fonts\materialdesignicons-webfont.woff2" />
+	  <None Include="wwwroot\lib\mdi\license.md" />
+	  <None Include="wwwroot\lib\mdi\README.md" />
+	  <None Include="wwwroot\lib\mdi\scss\materialdesignicons.scss" />
+	  <None Include="wwwroot\lib\mdi\scss\_animated.scss" />
+	  <None Include="wwwroot\lib\mdi\scss\_core.scss" />
+	  <None Include="wwwroot\lib\mdi\scss\_extras.scss" />
+	  <None Include="wwwroot\lib\mdi\scss\_functions.scss" />
+	  <None Include="wwwroot\lib\mdi\scss\_icons.scss" />
+	  <None Include="wwwroot\lib\mdi\scss\_path.scss" />
+	  <None Include="wwwroot\lib\mdi\scss\_variables.scss" />
+	</ItemGroup>
+	<ItemGroup>
+	  <TypeScriptCompile Include="wwwroot\app\Framework\TextboxValidators.ts" />
+	  <TypeScriptCompile Include="wwwroot\app\Services\CustomerService.ts" />
+	</ItemGroup>
+
+</Project>

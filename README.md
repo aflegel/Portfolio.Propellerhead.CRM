@@ -28,3 +28,8 @@ PostgreSQL drivers are included
 * User Account Controls
 * Expanded customer data
    * Multiple contact records
+
+
+# Information
+## Useful commands
+* npm install @angular/core@6.0.0-beta.8 @angular/common@6.0.0-beta.8 @angular/compiler@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/animations@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/platform-browser@6.0.0-beta.8 @angular/platform-browser-dynamic@6.0.0-beta.8 @angular/router@6.0.0-beta.8

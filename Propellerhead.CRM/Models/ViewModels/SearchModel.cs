@@ -13,7 +13,7 @@
 		/// <summary>
 		/// A string to break apart a composed search string into specific term searches
 		/// </summary>
-		public const string TokenExpression = @"([a-zA-Z]+:(?:\([^)]+?\)|[^( ]+))";
+		protected const string TokenExpression = @"([a-zA-Z]+:(?:\([^)]+?\)|[^( ]+))";
 
 		/// <summary>
 		/// The raw search string unfiltered
@@ -21,15 +21,9 @@
 		public string Query { get; set; }
 
 		/// <summary>
-		/// An enum to handle which column is the primary sort
+		/// A string to handle ordering
 		/// </summary>
-		public enum Sort
-		{
-			NameAscending,
-			NameDescending,
-			CollectionAscending,
-			CollectionDescending
-		}
+		public string Sort { get; set; }
 
 		protected List<KeyValuePair<string, string>> BuildKeywords(string input)
 		{
@@ -90,34 +84,69 @@
 						customer.Notes.Any(a => a.Content.Contains(token.Key)) ||
 						customer.Status.Label.Contains(token.Key));
 				}
-				else if (token.Value.ToLower() == "name")
+				else
 				{
-					customers = customers.Where(s => s.Name.Contains(token.Key));
-				}
-				else if (token.Value.ToLower() == "contactemail")
-				{
-					customers = customers.Where(s => s.ContactEmail.Contains(token.Key));
-				}
-				else if (token.Value.ToLower() == "contactname")
-				{
-					customers = customers.Where(s => s.ContactName.Contains(token.Key));
-				}
-				else if (token.Value.ToLower() == "notes")
-				{
-					customers = customers.Where(s => s.Notes.Any(a => a.Content.Contains(token.Key)));
-				}
-				else if (token.Value.ToLower() == "status")
-				{
-					customers = customers.Where(s => s.Status.Label.Contains(token.Key));
+					switch (token.Value.ToLower())
+					{
+						case "name":
+							customers = customers.Where(s => s.Name.Contains(token.Key));
+							break;
+						case "contactemail":
+							customers = customers.Where(s => s.ContactEmail.Contains(token.Key));
+							break;
+						case "contactname":
+							customers = customers.Where(s => s.ContactName.Contains(token.Key));
+							break;
+						case "notes":
+							customers = customers.Where(s => s.Notes.Any(a => a.Content.Contains(token.Key)));
+							break;
+						case "status":
+							customers = customers.Where(s => s.Status.Label.Contains(token.Key));
+							break;
+					}
 				}
 			}
 		}
 
+		/// <summary>
+		/// Takes a given sort parameter and orders the customer records
+		/// </summary>
+		/// <param name="customers"></param>
 		public void Order(ref IQueryable<Customer> customers)
 		{
-			customers = customers.OrderBy(s => s.Name);
+			IOrderedQueryable<Customer> customerSet;
+			switch (Sort)
+			{
+				case "name-ascending":
+					customerSet = customers.OrderBy(o => o.Name);
+					break;
+				case "name-descending":
+					customerSet = customers.OrderByDescending(o => o.Name);
+					break;
+				case "status-ascending":
+					customerSet = customers.OrderBy(o => o.Status.Label);
+					break;
+				case "status-descending":
+					customerSet = customers.OrderByDescending(o => o.Status.Label);
+					break;
+				case "created-ascending":
+					customerSet = customers.OrderBy(o => o.Created);
+					break;
+				case "created-descending":
+					customerSet = customers.OrderByDescending(o => o.Created);
+					break;
+				case "updated-ascending":
+					customerSet = customers.OrderBy(o => o.Updated);
+					break;
+				case "updated-descending":
+					customerSet = customers.OrderByDescending(o => o.Updated);
+					break;
+				default:
+					customerSet = customers.OrderBy(o => o.Name);
+					break;
+			}
 
-			return;
+			customers = customerSet.ThenBy(t => t.Name);
 		}
 	}
 }

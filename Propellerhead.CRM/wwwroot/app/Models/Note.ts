@@ -38,10 +38,6 @@ export class Note extends ModelState implements ModelValidationTools {
 		return validity
 	}
 
-	public PrepareSave(): void {
-		super.PrepareSave();
-	}
-
 	noteId: number;
 	content: string;
 	created: Date;

@@ -8,6 +8,14 @@
 
 	public class CustomerContextSeed
 	{
+		public static void Initialize(CustomerContext context)
+		{
+			if (context.Database.EnsureCreated())
+			{
+				SeedData(context);
+			}
+		}
+
 		/// <summary>
 		/// Seeds the database with the required statuses as well as sample customers
 		/// </summary>

@@ -12,6 +12,7 @@
 	{
 		public CustomerIndex()
 		{
+			Customers = new HashSet<Customer>();
 		}
 
 		/// <summary>
@@ -23,6 +24,7 @@
 		/// Contains the seach parameters
 		/// </summary>
 		public string Query { get; set; }
+
 		/// <summary>
 		/// Contains the sort parameter
 		/// </summary>

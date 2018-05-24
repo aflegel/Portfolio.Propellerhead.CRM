@@ -3,9 +3,6 @@
 	using PropellerheadCRM.Models;
 	using PropellerheadCRM.Models.Data;
 	using PropellerheadCRM.Models.Customer;
-	using AspNet.Security.OAuth.Validation;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.EntityFrameworkCore;
 	using System.Collections.Generic;
@@ -32,7 +29,8 @@
 
 			var search = new SearchModel
 			{
-				Query = index.Query
+				Query = index.Query,
+				Sort = index.Sort
 			};
 
 			search.Filter(ref customers);
@@ -107,9 +105,6 @@
 			//update the customer record
 			_context.Entry(customer).State = EntityState.Modified;
 
-			//do not update the status record
-			_context.Entry(customer.Status).State = EntityState.Unchanged;
-
 			//update each note
 			foreach (var note in customer.Notes)
 			{
@@ -119,6 +114,7 @@
 				}
 				else
 				{
+					//if the note is new, add a created date
 					note.Created = DateTime.Now;
 				}
 			}
@@ -126,12 +122,10 @@
 			_context.SaveChanges();
 
 			//return the customer record.  All new notes will have an id with them.
-			var statuses = _context.Statuses.ToList();
-
 			return new CustomerEdit()
 			{
 				Customer = customer,
-				Statuses = statuses
+				Statuses = _context.Statuses.ToList()
 			};
 		}
 	}

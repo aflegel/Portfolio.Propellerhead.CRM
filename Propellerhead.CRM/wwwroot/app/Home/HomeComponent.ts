@@ -1,11 +1,10 @@
 ﻿import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms"
 import { Router } from "@angular/router";
 import { CustomerService } from "../Services/CustomerService";
 import { CustomerIndex, Customer } from "../Models/Customer";
 
 @Component({
-	selector: "my-index",
+	selector: "home-index",
 	templateUrl: "/app/Home/HomeComponent.html"
 })
 
@@ -16,6 +15,11 @@ export class HomeComponent implements OnInit {
 	sort: string;
 	errorMessage: string;
 
+	nameSort: string = "name-ascending";
+	statusSort: string = "status-ascending";
+	createdSort: string = "created-ascending";
+	updatedSort: string = "updated-ascending";
+
 	constructor(public router: Router, private customerService: CustomerService) {
 		this.query = "";
 		this.sort = "";
@@ -25,8 +29,11 @@ export class HomeComponent implements OnInit {
 		this.Get();
 	}
 
+	/**
+	 * Fetches the list of customer records.  Transmits query and sort information.
+	 * */
 	private Get() {
-
+		//Filtering and sorting is performed server side.  When pagination is introduced the client will only receive a subset of records.
 		var indexData: CustomerIndex = new CustomerIndex({ query: this.query, customers: [], sort: this.sort } as CustomerIndex);
 
 		this.customerService.GetCustomerIndex(indexData)
@@ -35,20 +42,74 @@ export class HomeComponent implements OnInit {
 				() => this.Set(indexData));
 	}
 
+	/**
+	 * Initializes the pages data.  Configures the sort parameters.
+	 * @param data
+	 */
 	private Set(data: CustomerIndex) {
 		this.customerList = data.customers;
 		this.query = data.query;
 		this.sort = data.sort;
+
+		//this swaps the current sort for the opposing sort the next time it is clicked
+		switch (data.sort) {
+			case "name-ascending":
+				this.nameSort = "name-descending";
+				break;
+			case "name-descending":
+				this.nameSort = "name-ascending";
+				break;
+			case "status-ascending":
+				this.statusSort = "status-descending";
+				break;
+			case "status-descending":
+				this.statusSort = "status-ascending";
+				break;
+			case "created-ascending":
+				this.createdSort = "created-descending";
+				break;
+			case "created-descending":
+				this.createdSort = "created-ascending";
+				break;
+			case "updated-ascending":
+				this.updatedSort = "updated-descending";
+				break;
+			case "updated-descending":
+				this.updatedSort = "updated-ascending";
+				break;
+			default:
+				break;
+		}
 	}
 
+	/**
+	 * Routes the app to the customer record with id.
+	 * @param event
+	 * @param customer
+	 */
 	private Load(event: Event, customer: Customer) {
 		event.preventDefault();
 
 		this.router.navigate(["/customer/", customer.customerId]);
 	}
 
+	/**
+	 * An extention of Get that halts anchor events.
+	 * @param event
+	 */
 	private Search(event: Event) {
 		event.preventDefault();
+
+		this.Get();
+	}
+
+	/**
+	 * Updates the sort parameter and calls Get
+	 * @param event
+	 * @param orderBy
+	 */
+	private Sort(event: Event, orderBy: string): void {
+		this.sort = orderBy;
 
 		this.Get();
 	}

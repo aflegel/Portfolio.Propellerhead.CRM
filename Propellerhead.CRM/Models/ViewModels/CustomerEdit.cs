@@ -12,10 +12,14 @@
 	{
 		public CustomerEdit()
 		{
+			Statuses = new HashSet<Status>();
 		}
 
 		public Customer Customer { get; set; }
 
+		/// <summary>
+		/// A set of statuses for the customer records
+		/// </summary>
 		public ICollection<Status> Statuses { get; set; }
 	}
 }

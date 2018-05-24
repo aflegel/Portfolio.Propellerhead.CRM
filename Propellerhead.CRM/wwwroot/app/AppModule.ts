@@ -7,15 +7,12 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { AppRoutes } from "./Routes";
-//import { MaterialDesignElements } from "./AppModule.Material";
 
 import { AppComponent } from "./AppComponent";
 import { EditComponent } from "./Customer/EditComponent";
 import { EditNoteComponent } from "./Customer/EditNoteComponent";
 import { HomeComponent } from "./Home/HomeComponent";
 import { CustomerService } from "./Services/CustomerService";
-
-
 
 // enableProdMode();
 
@@ -25,7 +22,6 @@ import { CustomerService } from "./Services/CustomerService";
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
-		//MaterialDesignElements,
 		AppRoutes
 	],
 	declarations: [

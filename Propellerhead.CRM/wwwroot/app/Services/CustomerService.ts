@@ -2,10 +2,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 
-import { HeaderService } from "./HeaderService";
+import { HeaderUtility } from "./HeaderUtility";
 import { Customer, CustomerIndex, CustomerEdit } from "../Models/Customer";
-
-//npm install @angular/core@6.0.0-beta.8 @angular/common@6.0.0-beta.8 @angular/compiler@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/animations@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/platform-browser@6.0.0-beta.8 @angular/platform-browser-dynamic@6.0.0-beta.8 @angular/router@6.0.0-beta.8
 
 @Injectable()
 export class CustomerService {
@@ -15,13 +13,13 @@ export class CustomerService {
 	constructor(private http: HttpClient) { }
 
 	GetCustomer(id: number): Observable<CustomerEdit> {
-		return this.http.get<CustomerEdit>(this.url + "/Get/" + id)
+		return this.http.get<CustomerEdit>(this.url + "/Get/" + id, { headers: HeaderUtility.JsonHeaders() })
 			.map(resp => new CustomerEdit(resp))
 			.catch(this.handleError);
 	}
 
 	GetCustomerIndex(query: CustomerIndex): Observable<CustomerIndex> {
-		return this.http.post<CustomerIndex>(this.url + "/GetIndex", JSON.stringify(query), { headers: HeaderService.JsonHeaders() })
+		return this.http.post<CustomerIndex>(this.url + "/GetIndex", JSON.stringify(query), { headers: HeaderUtility.JsonHeaders() })
 			.map(resp => new CustomerIndex(resp))
 			.catch(this.handleError);
 	}
@@ -29,14 +27,14 @@ export class CustomerService {
 	UpdateCustomer(customer: Customer): Observable<CustomerEdit> {
 
 		return this.http
-			.put<CustomerEdit>(this.url + "/Put/" + customer.customerId, JSON.stringify(customer), { headers: HeaderService.JsonHeaders() })
+			.put<CustomerEdit>(this.url + "/Put/" + customer.customerId, JSON.stringify(customer), { headers: HeaderUtility.JsonHeaders() })
 			.map(resp => new CustomerEdit(resp))
 			.catch(this.handleError);
 	}
 
 	AddCustomer(customer: Customer): Observable<CustomerEdit> {
 		return this.http
-			.post<CustomerEdit>(this.url, JSON.stringify(customer))
+			.post<CustomerEdit>(this.url, JSON.stringify(customer), { headers: HeaderUtility.JsonHeaders() })
 			.map(resp => new CustomerEdit(resp))
 			.catch(this.handleError);
 	}

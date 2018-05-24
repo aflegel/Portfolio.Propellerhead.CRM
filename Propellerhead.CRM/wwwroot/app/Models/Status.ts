@@ -14,13 +14,6 @@ export class Status extends ModelState implements ModelValidationTools {
 		}
 	}
 
-	/**
-	 * checks all fields for validity, including children
-	 */
-	public IsValid(): boolean {
-		return true;
-	}
-
 	statusId: number;
 	label: string;
 }

@@ -1,6 +1,6 @@
 ﻿import { HttpHeaders } from "@angular/common/http";
 
-export class HeaderService {
+export class HeaderUtility {
 
 	// for requesting unsecured data using json
 	public static JsonHeaders(): HttpHeaders {

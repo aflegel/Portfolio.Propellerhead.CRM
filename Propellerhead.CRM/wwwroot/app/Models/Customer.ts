@@ -1,6 +1,5 @@
 ﻿import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { MinimumValue, MaximumValue, NgClassIsValid } from "../Framework/TextboxValidators";
 import { ModelState, ModelValidationTools } from "./ModelState";
 import { Note } from "./Note";
 import { Status } from "./Status";
@@ -19,6 +18,7 @@ export class CustomerIndex {
 
 export class CustomerEdit {
 	constructor(customerEdit: CustomerEdit) {
+		//the customer must be initialized with a constructor or the object will be treated as an interface (without functions).
 		this.customer = new Customer(customerEdit.customer);
 
 		this.statuses = customerEdit.statuses;
@@ -85,8 +85,10 @@ export class Customer extends ModelState implements ModelValidationTools {
 	public PrepareSave(): void {
 		super.PrepareSave();
 
+		//ensures the notes are ready for transmission
 		this.notes.forEach(item => item.PrepareSave());
-		this.status.PrepareSave();
+		//stop the status from being transmitted
+		this.status = null;
 	}
 
 	customerId: number;

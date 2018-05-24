@@ -1,5 +1,4 @@
-﻿import { Component, Input, ViewContainerRef, ViewChild, OnInit } from "@angular/core";
-import { ValidatorFn, AbstractControl } from "@angular/forms"
+﻿import { ValidatorFn, AbstractControl } from "@angular/forms"
 
 export function MaximumValue(max: Number): ValidatorFn {
 	return (control: AbstractControl): { [key: string]: any } => {

@@ -60,7 +60,7 @@
 	  <Content Remove="wwwroot\app\Models\Security.js.map" />
 	  <Content Remove="wwwroot\app\Models\_Routing.js" />
 	  <Content Remove="wwwroot\app\Models\_Routing.js.map" />
-	  <Content Remove="wwwroot\app\Services\HeaderService.ts" />
+	  <Content Remove="wwwroot\app\Services\HeaderUtility.ts" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -198,7 +198,7 @@
 	<ItemGroup>
 	  <TypeScriptCompile Include="wwwroot\app\Framework\TextboxValidators.ts" />
 	  <TypeScriptCompile Include="wwwroot\app\Services\CustomerService.ts" />
-	  <TypeScriptCompile Include="wwwroot\app\Services\HeaderService.ts" />
+	  <TypeScriptCompile Include="wwwroot\app\Services\HeaderUtility.ts" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Update="wwwroot\app\Customer\EditNoteComponent.js">

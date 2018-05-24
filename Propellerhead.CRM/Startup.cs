@@ -42,7 +42,7 @@
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CustomerContext context)
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
@@ -65,7 +65,6 @@
 			});
 
 			app.UseDefaultFiles();
-			app.UseAuthentication();
 
 			app.UseMvcWithDefaultRoute();
 			app.UseStaticFiles();
@@ -87,10 +86,7 @@
 
 			});
 
-			if (env.IsDevelopment())
-			{
-				//DbInitializer.Initialize(context);
-			}
+			CustomerContextSeed.Initialize(context);
 		}
 	}
 }

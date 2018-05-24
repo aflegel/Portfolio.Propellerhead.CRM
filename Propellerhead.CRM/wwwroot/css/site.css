@@ -17,3 +17,7 @@ main {
 .row.row-compact {
 	margin-bottom: 0;
 }
+
+ul.collection.with-header li.collection-item:hover {
+	background-color: #EFFAFF;
+}

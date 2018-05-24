@@ -1,7 +1,6 @@
-﻿import { Component, OnInit, ComponentFactoryResolver } from "@angular/core";
+﻿import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { FormGroup, FormControl, Validators, AbstractControl } from "@angular/forms";
-import { MinimumValue, NgClassIsValid } from "../Framework/TextboxValidators";
+import { NgClassIsValid } from "../Framework/TextboxValidators";
 
 import { CustomerService } from "../Services/CustomerService";
 
@@ -22,15 +21,14 @@ export class EditComponent implements OnInit {
 	errorMessage: string;
 	NgClassIsValid = NgClassIsValid;
 
-	constructor(public route: ActivatedRoute, private companyService: CustomerService) { }
+	constructor(public route: ActivatedRoute, private companyService: CustomerService) {
+		this.statuses = [];
+	}
 
 	ngOnInit() {
-		this.statuses = [];
 		var customerId: number;
 		var sub = this.route.params.subscribe(params => {
 			customerId = +params["id"]; // (+) converts string "id" to a number
-
-			// In a real app: dispatch action to load the details here.
 		});
 
 		this.Get(customerId);
@@ -38,43 +36,68 @@ export class EditComponent implements OnInit {
 
 
 	/**
-	 * Mapped service functions
+	 * Fetches the specified customer record
+	 * @param id
 	 */
-	Get(id: number) {
+	private Get(id: number) {
 		var subscribedData: any;
-		this.companyService.GetCustomer(id).subscribe(
-			(data: CustomerEdit) => subscribedData = data,
-			error => this.errorMessage = <any>error,
-			() => this.SyncData(subscribedData));
+
+		this.companyService.GetCustomer(id)
+			.subscribe((data: CustomerEdit) => subscribedData = data, //makes the api call and sets the data
+				error => this.errorMessage = <any>error,                  //what to do with an error
+				() => this.Set(subscribedData));                          //what to do with the call response
 	}
 
-	private SyncData(data: CustomerEdit) {
+	/**
+	 * Sets the customer data and the available statuses
+	 * @param data
+	 */
+	private Set(data: CustomerEdit) {
 		this.customer = data.customer;
 		this.statuses = data.statuses;
 	}
 
-	Update(event: Event): void {
+	/**
+	 * Pushes an update for the customer record to the api
+	 * @param event
+	 */
+	private Update(event: Event): void {
 		event.preventDefault();
 
+		//if the customer record is null terminate.
 		if (!this.customer) { return; }
 
-		var test = new Customer(this.customer);
+		if (!this.customer.IsValid()) { return; }
 
-		test.PrepareSave();//description = "Is this thing separate?";
+		//prepare all objects for transmission
+		this.customer.PrepareSave();
 
 		var subscribedData: any;
 
-		this.companyService.UpdateCustomer(test).subscribe(
-			(data: CustomerEdit) => subscribedData = data,
-			error => this.errorMessage = <any>error,
-			() => this.SyncData(subscribedData));
+		this.companyService.UpdateCustomer(this.customer)
+			.subscribe((data: CustomerEdit) => subscribedData = data, //makes the api call and sets the data
+				error => this.errorMessage = <any>error,                  //what to do with an error
+				() => this.Set(subscribedData));                          //what to do with the call response
 	}
 
-	AddNote(): void {
+	/**
+	 * Creates a new note and pushes it onto the customer note stack.
+	 * */
+	private AddNote(event: Event): void {
+		event.preventDefault();
+
+		//if any notes are invalid prevent adding a new note
+		for (var note of this.customer.notes) {
+			if (!note.IsValid())
+				return;
+		}
 
 		this.customer.notes.push(new Note());
 	}
 
+	/**
+	 * Validation extensions for the html file
+	 * */
 	get name() {
 		return this.customer.validation.get("name");
 	}
@@ -85,9 +108,5 @@ export class EditComponent implements OnInit {
 
 	get contactEmail() {
 		return this.customer.validation.get("contactEmail");
-	}
-
-	get statusId() {
-		return this.customer.validation.get("statusId");
 	}
 }

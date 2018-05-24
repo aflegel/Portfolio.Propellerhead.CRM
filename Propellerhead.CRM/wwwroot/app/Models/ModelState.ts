@@ -1,19 +1,5 @@
-﻿import {
-	Component,
-	Output,
-	EventEmitter
-} from "@angular/core";
-
-import {
-	FormGroup,
-	FormControl,
-	Validators
-} from "@angular/forms";
-
-import {
-	MinimumValue,
-	MaximumValue
-} from "../Framework/TextboxValidators";
+﻿import { Component, Output, EventEmitter } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 export class ModelValidation {
 	constructor() { }

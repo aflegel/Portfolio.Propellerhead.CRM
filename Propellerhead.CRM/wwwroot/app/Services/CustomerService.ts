@@ -1,7 +1,8 @@
 ﻿import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 
+import { HeaderService } from "./HeaderService";
 import { Customer, CustomerIndex } from "../Models/Customer";
 
 //npm install @angular/core@6.0.0-beta.8 @angular/common@6.0.0-beta.8 @angular/compiler@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/animations@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/platform-browser@6.0.0-beta.8 @angular/platform-browser-dynamic@6.0.0-beta.8 @angular/router@6.0.0-beta.8
@@ -19,15 +20,20 @@ export class CustomerService {
 			.catch(this.handleError);
 	}
 
-	GetCustomerIndex(): Observable<CustomerIndex> {
-		return this.http.get<CustomerIndex>(this.url + "/GetIndex")
-			.map(resp => resp as CustomerIndex)
+	GetCustomerIndex(query: string): Observable<CustomerIndex> {
+		let queryParam = new HttpParams();
+		queryParam.append('query', query);
+
+		return this.http.get<CustomerIndex>(this.url + "/GetIndex", { headers: HeaderService.JsonHeaders(), params: queryParam })
+			.map(resp => new CustomerIndex(resp))
 			.catch(this.handleError);
 	}
 
 	UpdateCustomer(customer: Customer): Observable<Customer> {
+		var test = JSON.stringify(customer);
+
 		return this.http
-			.put<Customer>(this.url + "/Put/" + customer.customerId, JSON.stringify(customer))
+			.put<Customer>(this.url + "/Put/" + customer.customerId, test, { headers: HeaderService.JsonHeaders() })
 			.map(resp => new Customer(resp))
 			.catch(this.handleError);
 	}

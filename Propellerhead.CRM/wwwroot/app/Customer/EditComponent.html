@@ -1,70 +1,77 @@
 ﻿<form #EditCustomer="ngForm">
-	<div *ngIf="customer != null">
-		<div *ngIf="errorMessage != null" class="alert alert-danger">
-			<p>Error:</p>
-			<pre class="text-danger">{{ errorMessage }}</pre>
-		</div>
-		<div class="row">
-			<div class="col s12">
-				<h2>Edit Customer</h2>
-			</div>
+	<div class="row" *ngIf="customer != null">
+		<div class="col s12 m10 l8">
+			<div class="card">
+				<div class="card-content">
+					<span class="card-title">Edit Customer</span>
+					<div *ngIf="errorMessage != null" class="alert alert-danger">
+						<p>Error:</p>
+						<pre class="text-danger">{{ errorMessage }}</pre>
+					</div>
 
-			<div class="col s12">
-				<button type="button" class="btn btn-info" (click)="Update($event)">Update</button>
-			</div>
-		</div>
+					<div class="row">
+						<div class="col s12 m6">
+							<div class="row">
+								<div class="col s12">
+									<label for="name">Name</label>
+									<input type="text" [(ngModel)]="customer.name" name="name" placeholder="Name" />
+								</div>
 
-		<div class="row">
-			<div class="col s8">
-				<div class="row">
-					<div class="col s6">
-						<div class="row">
-							<div class="col s3">Name</div>
-							<div class="col s9">
-								<input type="text" [(ngModel)]="customer.name" [formControl]="name" [ngClass]="NgClassIsValid(name)" name="name" placeholder="Name" class="form-control" (change)="customer.Dirty()" />
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="created">Created</label>
+									<input type="text" disabled [value]="customer.created | date:'medium'" name="created" placeholder="Created" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="updated">Updated</label>
+									<input type="text" disabled [value]="customer.updated | date:'medium'" name="updated" placeholder="Updated" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="contactName">Contact Name</label>
+									<input type="text" [(ngModel)]="customer.contactName" name="contactName" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="contactEmail">Contact Email</label>
+									<input type="text" [(ngModel)]="customer.contactEmail" name="contactEmail" placeholder="Email" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="status">Status {{customer.status.label}}</label>
+									<input type="text" [(ngModel)]="customer.status.label" name="status" placeholder="Status" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col s12 m6">
+							<div class="row">
+								<div class="col s3">Notes</div>
+								<div class="col s9">
+									<ul class="collection">
+										<ng-container *ngIf="customer.notes != null">
+											<li class="collection-item" *ngFor="let note of customer.notes">
+												<div class="row">
+													<div class="col l8 m12">{{note.content}}</div>
+												</div>
+											</li>
+										</ng-container>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col s6">
-						<div class="row">
-							<div class="col s6">{{customer.created}}</div>
-							<div class="col s6">{{customer.updated}}</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s6">
-						<div class="row">
-							<div class="col s3">Contact Name</div>
-							<div class="col s9">
-								<input type="text" [(ngModel)]="customer.contactName" [formControl]="contactName" [ngClass]="NgClassIsValid(contactName)" name="contactName" placeholder="Name" class="form-control" (change)="customer.Dirty()" />
-							</div>
-						</div>
-					</div>
-					<div class="col s6">
-						<div class="row">
-							<div class="col s3">Contact Email</div>
-							<div class="col s9">
-								<input type="text" [(ngModel)]="customer.contactEmail" [formControl]="contactEmail" [ngClass]="NgClassIsValid(contactEmail)" name="contactEmail" placeholder="Email" class="form-control" (change)="customer.Dirty()" />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col m12">
-						<div class="row">
-							<div class="col s3">Notes</div>
-							<div class="col s9">
-								<ul class="collection">
-									<ng-container *ngIf="customer.notes != null">
-										<li class="collection-item" *ngFor="let note of customer.notes">
-											<div class="row">
-												<div class="col l3 m12">{{note.content}}</div>
-											</div>
-										</li>
-									</ng-container>
-								</ul>
-							</div>
+
+					<div class="card-action">
+						<div class="col s12">
+							<a href="#" (click)="Update($event)">Update</a>
 						</div>
 					</div>
 				</div>

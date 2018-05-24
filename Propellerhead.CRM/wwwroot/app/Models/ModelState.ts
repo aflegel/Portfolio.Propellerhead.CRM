@@ -34,7 +34,7 @@ export interface ModelValidationTools {
 }
 
 export class ModelState extends ModelValidation implements ModelValidationTools {
-	@Output() dirtyEmitter: EventEmitter<any> = new EventEmitter();
+	//@Output() dirtyEmitter: EventEmitter<any> = new EventEmitter();
 
 	public InitializeValidation() { }
 
@@ -72,6 +72,6 @@ export class ModelState extends ModelValidation implements ModelValidationTools 
 		//reload validation
 		this.InitializeValidation();
 
-		this.dirtyEmitter.emit(true);
+		//this.dirtyEmitter.emit(true);
 	}
 }

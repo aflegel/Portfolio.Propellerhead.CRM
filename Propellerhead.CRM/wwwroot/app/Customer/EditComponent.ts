@@ -19,6 +19,7 @@ export class EditComponent implements OnInit {
 	/* Front end variables */
 	customer: Customer;
 	errorMessage: string;
+	NgClassIsValid = NgClassIsValid;
 
 	constructor(public route: ActivatedRoute, private companyService: CustomerService) { }
 
@@ -68,5 +69,13 @@ export class EditComponent implements OnInit {
 
 	Load(event: Event): void {
 		event.preventDefault();
+	}
+
+	get name() {
+		return this.customer.validation.get("name");
+	}
+
+	get contactName() {
+		return this.customer.validation.get("contactName");
 	}
 }

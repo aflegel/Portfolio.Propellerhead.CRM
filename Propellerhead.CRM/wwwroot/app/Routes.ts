@@ -8,4 +8,4 @@ const appRoutes: Routes = [
 	{ path: "customer/:id", component: EditComponent, data: { title: "Edit Customer" } }
 ];
 
-export const HomeRouting = RouterModule.forRoot(appRoutes);
+export const AppRoutes = RouterModule.forRoot(appRoutes);

@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 	private	Get() {
 		var companyLists: CustomerIndex;
 
-		this.customerService.GetCustomerIndex()
+		this.customerService.GetCustomerIndex("")
 			.subscribe((data: CustomerIndex) => companyLists = data,
 				error => this.errorMessage = <any>error,
 				() => this.Set(companyLists));

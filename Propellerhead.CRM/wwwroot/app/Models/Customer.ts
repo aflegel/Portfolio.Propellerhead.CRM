@@ -6,6 +6,12 @@ import { Note } from "./Note";
 import { Status } from "./Status";
 
 export class CustomerIndex {
+	constructor(customerIndex: CustomerIndex) {
+		this.customers = [];
+
+		this.customers = customerIndex.customers.map(customer => new Customer(customer));
+	}
+
 	customers: Customer[];
 }
 
@@ -19,7 +25,11 @@ export class Customer extends ModelState implements ModelValidationTools {
 			this.name = customer.name;
 			this.contactName = customer.contactName;
 			this.contactEmail = customer.contactEmail;
+			this.created = customer.created;
+			this.updated = customer.updated;
+			this.statusId = customer.statusId;
 
+			this.status = new Status(customer.status);
 			this.notes = customer.notes.map(note => new Note(note));
 		}
 
@@ -55,7 +65,15 @@ export class Customer extends ModelState implements ModelValidationTools {
 		return validity
 	}
 
+	public PrepareSave(): void {
+		super.PrepareSave();
 
+		this.created = "2018-05-05";
+		this.updated = "2018-05-05";
+
+		this.notes.forEach(item => item.PrepareSave());
+		this.status.PrepareSave();
+	}
 
 	customerId: number;
 	name: string;
@@ -64,8 +82,8 @@ export class Customer extends ModelState implements ModelValidationTools {
 	contactName: string;
 	contactEmail: string;
 
-	created: Date;
-	updated: Date;
+	created: string;
+	updated: string;
 
 	notes: Note[];
 	status: Status;

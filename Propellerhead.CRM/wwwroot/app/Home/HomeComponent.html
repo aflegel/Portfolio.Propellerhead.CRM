@@ -7,17 +7,19 @@
 				</div>
 				<div class="row">
 					<div class="col l3 m12">Name</div>
-					<div class="col l3 m12">Created</div>
-					<div class="col l3 m12">Updated</div>
+					<div class="col l3 m12">Status</div>
+					<div class="col l2 m12">Created</div>
+					<div class="col l2 m12">Updated</div>
 				</div>
 			</li>
 			<ng-container *ngIf="customerList != null">
 				<li class="collection-item" *ngFor="let customer of customerList">
 					<div class="row">
 						<div class="col l3 m12">{{customer.name}}</div>
-						<div class="col l3 m12">{{customer.created}}</div>
-						<div class="col l3 m12">{{customer.updated}}</div>
-						<div class="col l3 m12">
+						<div class="col l3 m12">{{customer.status.label}}</div>
+						<div class="col l2 m12">{{customer.created | date:'medium'}}</div>
+						<div class="col l2 m12">{{customer.updated | date:'medium'}}</div>
+						<div class="col l2 m12">
 							<a (click)="Load(customer)">Edit</a>
 						</div>
 					</div>

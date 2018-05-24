@@ -25,9 +25,12 @@
 
 		// GET: api/values
 		[HttpGet("[action]")]
-		public CustomerIndex GetIndex()
+		public CustomerIndex GetIndex(string query)
 		{
-			var customers = _context.Customers.Where(w => true).OrderBy(o => o.Name).ToList();
+			var customers = _context.Customers.Where(w => true)
+				.Include(i => i.Notes)
+				.Include(i => i.Status)
+				.OrderBy(o => o.Name).ToList();
 
 			return new CustomerIndex()
 			{
@@ -41,6 +44,7 @@
 		{
 			var company = _context.Customers.Where(c => c.CustomerId == id)
 				.Include(c => c.Notes)
+				.Include(i => i.Status)
 				.FirstOrDefault();
 
 			return company;

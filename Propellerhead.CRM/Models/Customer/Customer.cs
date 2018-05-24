@@ -29,7 +29,6 @@
 		public DateTime Updated { get; set; }
 
 		public ICollection<Note> Notes { get; set; }
-		[JsonIgnore]
 		public Status Status { get; set; }
 	}
 }

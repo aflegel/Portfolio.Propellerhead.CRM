@@ -45,7 +45,7 @@ export function OrRequired(optional: any): ValidatorFn {
 
 export function NgClassIsValid(validation: AbstractControl): string[] {
 	if (validation.invalid)
-		return ["is-invalid"];
+		return ["data-error"];
 	else
 		return [""];
 }

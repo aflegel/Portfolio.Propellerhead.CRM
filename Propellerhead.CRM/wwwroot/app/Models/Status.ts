@@ -9,6 +9,8 @@ export class Status extends ModelState implements ModelValidationTools {
 		super();
 
 		if (status != null) {
+			this.label = status.label;
+			this.statusId = status.statusId;
 		}
 	}
 

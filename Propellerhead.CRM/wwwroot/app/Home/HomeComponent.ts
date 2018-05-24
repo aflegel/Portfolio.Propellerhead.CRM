@@ -12,28 +12,44 @@ import { CustomerIndex, Customer } from "../Models/Customer";
 export class HomeComponent implements OnInit {
 
 	customerList: Array<Customer>;
+	query: string;
+	sort: string;
 	errorMessage: string;
 
-	constructor(public router: Router, private customerService: CustomerService) { }
+	constructor(public router: Router, private customerService: CustomerService) {
+		this.query = "";
+		this.sort = "";
+	}
 
 	ngOnInit() {
 		this.Get();
 	}
 
-	private	Get() {
-		var companyLists: CustomerIndex;
+	private Get() {
 
-		this.customerService.GetCustomerIndex("")
-			.subscribe((data: CustomerIndex) => companyLists = data,
+		var indexData: CustomerIndex = new CustomerIndex({ query: this.query, customers: [], sort: this.sort } as CustomerIndex);
+
+		this.customerService.GetCustomerIndex(indexData)
+			.subscribe((data: CustomerIndex) => indexData = data,
 				error => this.errorMessage = <any>error,
-				() => this.Set(companyLists));
+				() => this.Set(indexData));
 	}
 
 	private Set(data: CustomerIndex) {
 		this.customerList = data.customers;
+		this.query = data.query;
+		this.sort = data.sort;
 	}
 
-	Load(customer: Customer) {
+	private Load(event: Event, customer: Customer) {
+		event.preventDefault();
+
 		this.router.navigate(["/customer/", customer.customerId]);
+	}
+
+	private Search(event: Event) {
+		event.preventDefault();
+
+		this.Get();
 	}
 }

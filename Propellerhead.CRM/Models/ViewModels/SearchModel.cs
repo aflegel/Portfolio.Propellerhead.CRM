@@ -20,11 +20,6 @@
 		/// </summary>
 		public string Query { get; set; }
 
-		public virtual RouteValueDictionary RouteValues
-		{
-			get { return new RouteValueDictionary { [nameof(Query)] = Query }; }
-		}
-
 		/// <summary>
 		/// An enum to handle which column is the primary sort
 		/// </summary>
@@ -116,6 +111,13 @@
 					customers = customers.Where(s => s.Status.Label.Contains(token.Key));
 				}
 			}
+		}
+
+		public void Order(ref IQueryable<Customer> customers)
+		{
+			customers = customers.OrderBy(s => s.Name);
+
+			return;
 		}
 	}
 }

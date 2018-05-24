@@ -3,7 +3,14 @@
 		<ul class="collection with-header">
 			<li class="collection-header">
 				<div class="row">
-					<h4>Customers</h4>
+					<div class="col l6 s12">
+						<h4>Customers</h4>
+					</div>
+					<div class="input-field col l6 s12">
+
+						<a class="prefix" href="#" (click)="Search($event)"><i class="mdi mdi-magnify prefix"></i></a>
+						<input type="text" [(ngModel)]="query" name="query" placeholder="Search" (keyup.enter)="Search($event)" />
+					</div>
 				</div>
 				<div class="row row-compact">
 					<div class="col l3 m12">Name</div>
@@ -20,7 +27,7 @@
 						<div class="col l2 m12">{{customer.created | date:'medium'}}</div>
 						<div class="col l2 m12">{{customer.updated | date:'medium'}}</div>
 						<div class="col l2 m12">
-							<a (click)="Load(customer)">Edit</a>
+							<a href="#" (click)="Load($event, customer)">Edit</a>
 						</div>
 					</div>
 				</li>

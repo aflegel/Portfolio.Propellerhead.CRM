@@ -7,17 +7,18 @@ import { Status } from "./Status";
 
 export class CustomerIndex {
 	constructor(customerIndex: CustomerIndex) {
-		this.customers = [];
-
+		this.query = customerIndex.query;
+		this.sort = customerIndex.sort;
 		this.customers = customerIndex.customers.map(customer => new Customer(customer));
 	}
 
 	customers: Customer[];
+	query: string;
+	sort: string;
 }
 
 export class CustomerEdit {
 	constructor(customerEdit: CustomerEdit) {
-
 		this.customer = new Customer(customerEdit.customer);
 
 		this.statuses = customerEdit.statuses;
@@ -60,6 +61,7 @@ export class Customer extends ModelState implements ModelValidationTools {
 				Validators.required,
 			]),
 			"contactEmail": new FormControl(this.contactEmail, [
+				Validators.required,
 				Validators.email,
 			])
 		});

@@ -86,4 +86,8 @@ export class EditComponent implements OnInit {
 	get contactEmail() {
 		return this.customer.validation.get("contactEmail");
 	}
+
+	get statusId() {
+		return this.customer.validation.get("statusId");
+	}
 }

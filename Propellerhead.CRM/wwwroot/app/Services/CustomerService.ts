@@ -20,20 +20,16 @@ export class CustomerService {
 			.catch(this.handleError);
 	}
 
-	GetCustomerIndex(query: string): Observable<CustomerIndex> {
-		let queryParam = new HttpParams();
-		queryParam.append('query', query);
-
-		return this.http.get<CustomerIndex>(this.url + "/GetIndex", { headers: HeaderService.JsonHeaders(), params: queryParam })
+	GetCustomerIndex(query: CustomerIndex): Observable<CustomerIndex> {
+		return this.http.post<CustomerIndex>(this.url + "/GetIndex", JSON.stringify(query), { headers: HeaderService.JsonHeaders() })
 			.map(resp => new CustomerIndex(resp))
 			.catch(this.handleError);
 	}
 
 	UpdateCustomer(customer: Customer): Observable<CustomerEdit> {
-		var test = JSON.stringify(customer);
 
 		return this.http
-			.put<CustomerEdit>(this.url + "/Put/" + customer.customerId, test, { headers: HeaderService.JsonHeaders() })
+			.put<CustomerEdit>(this.url + "/Put/" + customer.customerId, JSON.stringify(customer), { headers: HeaderService.JsonHeaders() })
 			.map(resp => new CustomerEdit(resp))
 			.catch(this.handleError);
 	}

@@ -25,18 +25,32 @@
 		}
 
 		// GET: api/values
-		[HttpGet("[action]")]
-		public CustomerIndex GetIndex(string query)
+		[HttpPost("[action]")]
+		public CustomerIndex GetIndex([FromBody]CustomerIndex index)
 		{
-			var customers = _context.Customers.Where(w => true)
-				.Include(i => i.Notes)
-				.Include(i => i.Status)
-				.OrderBy(o => o.Name).ToList();
+			var customers = GetIndex();
+
+			var search = new SearchModel
+			{
+				Query = index.Query
+			};
+
+			search.Filter(ref customers);
+			search.Order(ref customers);
 
 			return new CustomerIndex()
 			{
-				Customers = customers
+				Customers = customers.ToList(),
+				Query = index.Query,
+				Sort = index.Sort
 			};
+		}
+
+		private IQueryable<Customer> GetIndex()
+		{
+			return _context.Customers
+				.Include(i => i.Notes)
+				.Include(i => i.Status);
 		}
 
 

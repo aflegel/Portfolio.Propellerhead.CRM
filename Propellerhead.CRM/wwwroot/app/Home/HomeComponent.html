@@ -5,7 +5,7 @@
 				<div class="row">
 					<h4>Customers</h4>
 				</div>
-				<div class="row">
+				<div class="row row-compact">
 					<div class="col l3 m12">Name</div>
 					<div class="col l3 m12">Status</div>
 					<div class="col l2 m12">Created</div>
@@ -14,7 +14,7 @@
 			</li>
 			<ng-container *ngIf="customerList != null">
 				<li class="collection-item" *ngFor="let customer of customerList">
-					<div class="row">
+					<div class="row row-compact">
 						<div class="col l3 m12">{{customer.name}}</div>
 						<div class="col l3 m12">{{customer.status.label}}</div>
 						<div class="col l2 m12">{{customer.created | date:'medium'}}</div>

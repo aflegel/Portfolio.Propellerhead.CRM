@@ -9,7 +9,9 @@ export class Note extends ModelState implements ModelValidationTools {
 		super();
 
 		if (note != null) {
+			this.noteId = note.noteId;
 			this.content = note.content;
+			this.created = note.created;
 		}
 
 		this.InitializeValidation();

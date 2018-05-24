@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 
 import { HeaderService } from "./HeaderService";
-import { Customer, CustomerIndex } from "../Models/Customer";
+import { Customer, CustomerIndex, CustomerEdit } from "../Models/Customer";
 
 //npm install @angular/core@6.0.0-beta.8 @angular/common@6.0.0-beta.8 @angular/compiler@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/animations@6.0.0-beta.8 @angular/forms@6.0.0-beta.8 @angular/http@6.0.0-beta.8 @angular/platform-browser@6.0.0-beta.8 @angular/platform-browser-dynamic@6.0.0-beta.8 @angular/router@6.0.0-beta.8
 
@@ -14,9 +14,9 @@ export class CustomerService {
 
 	constructor(private http: HttpClient) { }
 
-	GetCustomer(id: number): Observable<Customer> {
-		return this.http.get<Customer>(this.url + "/Get/" + id)
-			.map(resp => new Customer(resp))
+	GetCustomer(id: number): Observable<CustomerEdit> {
+		return this.http.get<CustomerEdit>(this.url + "/Get/" + id)
+			.map(resp => new CustomerEdit(resp))
 			.catch(this.handleError);
 	}
 
@@ -29,19 +29,19 @@ export class CustomerService {
 			.catch(this.handleError);
 	}
 
-	UpdateCustomer(customer: Customer): Observable<Customer> {
+	UpdateCustomer(customer: Customer): Observable<CustomerEdit> {
 		var test = JSON.stringify(customer);
 
 		return this.http
-			.put<Customer>(this.url + "/Put/" + customer.customerId, test, { headers: HeaderService.JsonHeaders() })
-			.map(resp => new Customer(resp))
+			.put<CustomerEdit>(this.url + "/Put/" + customer.customerId, test, { headers: HeaderService.JsonHeaders() })
+			.map(resp => new CustomerEdit(resp))
 			.catch(this.handleError);
 	}
 
-	AddCustomer(customer: Customer): Observable<Customer> {
+	AddCustomer(customer: Customer): Observable<CustomerEdit> {
 		return this.http
-			.post<Customer>(this.url, JSON.stringify(customer))
-			.map(resp => new Customer(resp))
+			.post<CustomerEdit>(this.url, JSON.stringify(customer))
+			.map(resp => new CustomerEdit(resp))
 			.catch(this.handleError);
 	}
 

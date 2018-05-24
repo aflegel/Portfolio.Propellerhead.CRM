@@ -200,5 +200,13 @@
 	  <TypeScriptCompile Include="wwwroot\app\Services\CustomerService.ts" />
 	  <TypeScriptCompile Include="wwwroot\app\Services\HeaderService.ts" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="wwwroot\app\Customer\EditNoteComponent.js">
+	    <DependentUpon>EditNoteComponent.ts</DependentUpon>
+	  </Content>
+	  <Content Update="wwwroot\app\Customer\EditNoteComponent.js.map">
+	    <DependentUpon>EditNoteComponent.js</DependentUpon>
+	  </Content>
+	</ItemGroup>
 
 </Project>

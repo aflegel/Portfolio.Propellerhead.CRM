@@ -1,23 +1,24 @@
-﻿	<nav>
+﻿<header>
+	<nav>
 		<div class="nav-wrapper blue-grey darken-3">
 			<div class="container">
 				<a routerLink="/" routerLinkActive="active" class="brand-logo">Portfolio CRM</a>
 			</div>
 		</div>
 	</nav>
-	<div class="light-blue lighten-3">
-
+</header>
+<main class="page-fill light-blue lighten-3">
 		<div class="container">
 			<router-outlet></router-outlet>
 		</div>
-		<footer class="page-footer light-green darken-2">
-			<div class="footer-copyright">
-				<div class="container">
-					&copy; 2018 BoutinFlegel
-					<span class="right right-align">
-						Angular@{{version}}
-					</span>
-				</div>
-			</div>
-		</footer>
+</main>
+<footer class="page-footer light-green darken-2">
+	<div class="footer-copyright">
+		<div class="container">
+			&copy; 2018 BoutinFlegel
+			<span class="right right-align">
+				Angular@{{version}}
+			</span>
+		</div>
 	</div>
+</footer>

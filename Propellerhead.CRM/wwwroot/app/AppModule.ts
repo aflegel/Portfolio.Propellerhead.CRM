@@ -1,8 +1,7 @@
-import "./rxjs-operators";
+import "./Operators";
 
 import { NgModule, enableProdMode } from "@angular/core";
 import { BrowserModule, Title } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_BASE_HREF, Location } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
@@ -12,6 +11,7 @@ import { AppRoutes } from "./Routes";
 
 import { AppComponent } from "./AppComponent";
 import { EditComponent } from "./Customer/EditComponent";
+import { EditNoteComponent } from "./Customer/EditNoteComponent";
 import { HomeComponent } from "./Home/HomeComponent";
 import { CustomerService } from "./Services/CustomerService";
 
@@ -22,7 +22,6 @@ import { CustomerService } from "./Services/CustomerService";
 @NgModule({
 	imports: [
 		BrowserModule,
-		BrowserAnimationsModule,
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
@@ -32,6 +31,7 @@ import { CustomerService } from "./Services/CustomerService";
 	declarations: [
 		AppComponent,
 		HomeComponent,
+		EditNoteComponent,
 		EditComponent,
 	],
 	entryComponents: [

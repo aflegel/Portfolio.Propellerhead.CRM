@@ -12,6 +12,7 @@
 	using System.Linq;
 	using System.Threading.Tasks;
 	using PropellerheadCRM.Models.ViewModels;
+	using System;
 
 	[Route("api/[controller]")]
 	public class CustomerController : Controller
@@ -40,43 +41,84 @@
 
 
 		[HttpGet("[action]/{id}")]
-		public Customer Get(int id)
+		public CustomerEdit Get(int id)
 		{
-			var company = _context.Customers.Where(c => c.CustomerId == id)
+			var customer = _context.Customers.Where(c => c.CustomerId == id)
 				.Include(c => c.Notes)
 				.Include(i => i.Status)
 				.FirstOrDefault();
 
-			return company;
+			var statuses = _context.Statuses.ToList();
+
+			return new CustomerEdit()
+			{
+				Customer = customer,
+				Statuses = statuses
+			};
 		}
 
 		// POST api/values
 		[HttpPost]
-		public Customer Post([FromBody]Customer value)
+		public CustomerEdit Post([FromBody]Customer customer)
 		{
+			customer.Created = DateTime.Now;
+			customer.Updated = DateTime.Now;
+
 			// it's valid isn't it? TODO: add server-side validation here
-			var newTestData = _context.Add(value);
+			var newTestData = _context.Add(customer);
+
 			_context.SaveChanges();
-			return newTestData.Entity;
+
+			var statuses = _context.Statuses.ToList();
+
+			return new CustomerEdit()
+			{
+				Customer = newTestData.Entity,
+				Statuses = statuses
+			};
 		}
 
 		/// <summary>
-		///
+		/// Updates a Customer record and all Note records associated
 		/// </summary>
 		/// <param name="id"></param>
-		/// <param name="value"></param>
+		/// <param name="customer"></param>
 		[HttpPut("[action]/{id}")]
-		public Customer Put(int id, [FromBody]Customer value)
+		public CustomerEdit Put(int id, [FromBody]Customer customer)
 		{
-			//value.ReconnectChildren();
+			_context.Attach(customer);
 
-			_context.Attach(value);
+			customer.Updated = DateTime.Now;
 
-			//value.ModifyCompany(_context);
+			//update the customer record
+			_context.Entry(customer).State = EntityState.Modified;
+
+			//do not update the status record
+			_context.Entry(customer.Status).State = EntityState.Unchanged;
+
+			//update each note
+			foreach (var note in customer.Notes)
+			{
+				if (note.NoteId > 0)
+				{
+					_context.Entry(note).State = EntityState.Modified;
+				}
+				else
+				{
+					note.Created = DateTime.Now;
+				}
+			}
 
 			_context.SaveChanges();
 
-			return value;
+			//return the customer record.  All new notes will have an id with them.
+			var statuses = _context.Statuses.ToList();
+
+			return new CustomerEdit()
+			{
+				Customer = customer,
+				Statuses = statuses
+			};
 		}
 	}
 }

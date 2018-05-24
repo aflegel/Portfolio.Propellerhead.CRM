@@ -5,7 +5,7 @@ import { MinimumValue, NgClassIsValid } from "../Framework/TextboxValidators";
 
 import { CustomerService } from "../Services/CustomerService";
 
-import { Customer } from "../Models/Customer";
+import { Customer, CustomerEdit } from "../Models/Customer";
 import { Note } from "../Models/Note";
 import { Status } from "../Models/Status";
 
@@ -18,12 +18,14 @@ import { Status } from "../Models/Status";
 export class EditComponent implements OnInit {
 	/* Front end variables */
 	customer: Customer;
+	statuses: Status[];
 	errorMessage: string;
 	NgClassIsValid = NgClassIsValid;
 
 	constructor(public route: ActivatedRoute, private companyService: CustomerService) { }
 
 	ngOnInit() {
+		this.statuses = [];
 		var customerId: number;
 		var sub = this.route.params.subscribe(params => {
 			customerId = +params["id"]; // (+) converts string "id" to a number
@@ -41,13 +43,14 @@ export class EditComponent implements OnInit {
 	Get(id: number) {
 		var subscribedData: any;
 		this.companyService.GetCustomer(id).subscribe(
-			(data: Customer) => subscribedData = data,
+			(data: CustomerEdit) => subscribedData = data,
 			error => this.errorMessage = <any>error,
 			() => this.SyncData(subscribedData));
 	}
 
-	private SyncData(data: Customer) {
-		this.customer = data;
+	private SyncData(data: CustomerEdit) {
+		this.customer = data.customer;
+		this.statuses = data.statuses;
 	}
 
 	Update(event: Event): void {
@@ -62,13 +65,14 @@ export class EditComponent implements OnInit {
 		var subscribedData: any;
 
 		this.companyService.UpdateCustomer(test).subscribe(
-			(data: Customer) => subscribedData = data,
+			(data: CustomerEdit) => subscribedData = data,
 			error => this.errorMessage = <any>error,
 			() => this.SyncData(subscribedData));
 	}
 
-	Load(event: Event): void {
-		event.preventDefault();
+	AddNote(): void {
+
+		this.customer.notes.push(new Note());
 	}
 
 	get name() {
@@ -77,5 +81,9 @@ export class EditComponent implements OnInit {
 
 	get contactName() {
 		return this.customer.validation.get("contactName");
+	}
+
+	get contactEmail() {
+		return this.customer.validation.get("contactEmail");
 	}
 }

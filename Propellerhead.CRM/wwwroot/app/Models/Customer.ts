@@ -15,6 +15,18 @@ export class CustomerIndex {
 	customers: Customer[];
 }
 
+export class CustomerEdit {
+	constructor(customerEdit: CustomerEdit) {
+
+		this.customer = new Customer(customerEdit.customer);
+
+		this.statuses = customerEdit.statuses;
+	}
+
+	customer: Customer;
+	statuses: Status[];
+}
+
 export class Customer extends ModelState implements ModelValidationTools {
 	constructor(customer?: Customer) {
 		super();
@@ -46,6 +58,9 @@ export class Customer extends ModelState implements ModelValidationTools {
 			]),
 			"contactName": new FormControl(this.contactName, [
 				Validators.required,
+			]),
+			"contactEmail": new FormControl(this.contactEmail, [
+				Validators.email,
 			])
 		});
 	}
@@ -67,9 +82,6 @@ export class Customer extends ModelState implements ModelValidationTools {
 
 	public PrepareSave(): void {
 		super.PrepareSave();
-
-		this.created = "2018-05-05";
-		this.updated = "2018-05-05";
 
 		this.notes.forEach(item => item.PrepareSave());
 		this.status.PrepareSave();

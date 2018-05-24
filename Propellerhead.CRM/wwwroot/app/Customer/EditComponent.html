@@ -1,6 +1,6 @@
 ﻿<form #EditCustomer="ngForm">
 	<div class="row" *ngIf="customer != null">
-		<div class="col s12 m10 l8">
+		<div class="col s12">
 			<div class="card">
 				<div class="card-content">
 					<span class="card-title">Edit Customer</span>
@@ -14,9 +14,28 @@
 							<div class="row">
 								<div class="col s12">
 									<label for="name">Name</label>
-									<input type="text" [(ngModel)]="customer.name" name="name" placeholder="Name" />
+									<input type="text" class="validate" [(ngModel)]="customer.name" name="name" placeholder="Name" [ngClass]="NgClassIsValid(name)" (change)="customer.Dirty()" />
 								</div>
-
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="contactName">Contact Name</label>
+									<input type="text" [(ngModel)]="customer.contactName" name="contactName" [ngClass]="NgClassIsValid(contactName)" (change)="customer.Dirty()" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="contactEmail">Contact Email</label>
+									<input type="text" [(ngModel)]="customer.contactEmail" name="contactEmail" placeholder="Email" [ngClass]="NgClassIsValid(contactEmail)" (change)="customer.Dirty()" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12">
+									<label for="contactEmail">Status</label>
+									<select class="browser-default" [(ngModel)]="customer.statusId" name="status" (change)="customer.Dirty()">
+										<option *ngFor="let status of statuses" value="{{status.statusId}}">{{status.label}}</option>
+									</select>
+								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
@@ -30,38 +49,19 @@
 									<input type="text" disabled [value]="customer.updated | date:'medium'" name="updated" placeholder="Updated" />
 								</div>
 							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="contactName">Contact Name</label>
-									<input type="text" [(ngModel)]="customer.contactName" name="contactName" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="contactEmail">Contact Email</label>
-									<input type="text" [(ngModel)]="customer.contactEmail" name="contactEmail" placeholder="Email" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="status">Status {{customer.status.label}}</label>
-									<input type="text" [(ngModel)]="customer.status.label" name="status" placeholder="Status" />
-								</div>
-							</div>
 						</div>
 
 
 						<div class="col s12 m6">
 							<div class="row">
-								<div class="col s3">Notes</div>
-								<div class="col s9">
+								<div class="col s12">
+									<label for="updated">Notes</label>
+									<div class="row row-compact">
+										<div class="col m12"><a (click)="AddNote()">Add Note</a></div>
+									</div>
 									<ul class="collection">
 										<ng-container *ngIf="customer.notes != null">
-											<li class="collection-item" *ngFor="let note of customer.notes">
-												<div class="row">
-													<div class="col l8 m12">{{note.content}}</div>
-												</div>
-											</li>
+											<li class="collection-item" customer-edit-note *ngFor="let note of customer.notes" [note]="note"></li>
 										</ng-container>
 									</ul>
 								</div>

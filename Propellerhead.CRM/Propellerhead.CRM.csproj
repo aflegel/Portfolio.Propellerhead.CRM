@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<RuntimeIdentifier>linux-arm</RuntimeIdentifier>
 		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
 	</PropertyGroup>
 
@@ -68,6 +69,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Humanizer.xproj" Version="2.1.0" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.2" />
 	</ItemGroup>
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />

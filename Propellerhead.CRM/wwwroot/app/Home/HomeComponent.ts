@@ -103,7 +103,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	/**
-	 * An extention of Get that halts anchor events.
+	 * An extension of Get that halts anchor events.
 	 * @param event
 	 */
 	private Search(event: Event) {

@@ -5,7 +5,7 @@ export class ModelValidation {
 	constructor() { }
 
 	/**
-	 * Function to be superceded that clears out validation and parent objects for serialization
+	 * Function to be superseded that clears out validation and parent objects for serialization
 	 */
 	public PrepareSave() {
 		this.validation = undefined;
@@ -20,8 +20,6 @@ export interface ModelValidationTools {
 }
 
 export class ModelState extends ModelValidation implements ModelValidationTools {
-	//@Output() dirtyEmitter: EventEmitter<any> = new EventEmitter();
-
 	public InitializeValidation() { }
 
 	/**
@@ -57,7 +55,5 @@ export class ModelState extends ModelValidation implements ModelValidationTools 
 	public Dirty() {
 		//reload validation
 		this.InitializeValidation();
-
-		//this.dirtyEmitter.emit(true);
 	}
 }

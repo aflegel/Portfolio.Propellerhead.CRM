@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
-		<RuntimeIdentifier>linux-arm</RuntimeIdentifier>
+		<RuntimeIdentifiers>linux-arm</RuntimeIdentifiers>
 		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
 	</PropertyGroup>
 

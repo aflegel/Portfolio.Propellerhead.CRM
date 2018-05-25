@@ -44,6 +44,10 @@
 			};
 		}
 
+		/// <summary>
+		/// Returns the customer data in a specific format
+		/// </summary>
+		/// <returns></returns>
 		private IQueryable<Customer> GetIndex()
 		{
 			return _context.Customers
@@ -51,7 +55,11 @@
 				.Include(i => i.Status);
 		}
 
-
+		/// <summary>
+		/// Fetches any matching customer record and the available statuses
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
 		[HttpGet("[action]/{id}")]
 		public CustomerEdit Get(int id)
 		{
@@ -65,27 +73,6 @@
 			return new CustomerEdit()
 			{
 				Customer = customer,
-				Statuses = statuses
-			};
-		}
-
-		// POST api/values
-		[HttpPost]
-		public CustomerEdit Post([FromBody]Customer customer)
-		{
-			customer.Created = DateTime.Now;
-			customer.Updated = DateTime.Now;
-
-			// it's valid isn't it? TODO: add server-side validation here
-			var newTestData = _context.Add(customer);
-
-			_context.SaveChanges();
-
-			var statuses = _context.Statuses.ToList();
-
-			return new CustomerEdit()
-			{
-				Customer = newTestData.Entity,
 				Statuses = statuses
 			};
 		}

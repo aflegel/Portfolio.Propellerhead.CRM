@@ -16,18 +16,23 @@
 								<div class="col s12">
 									<label for="name">Name</label>
 									<input type="text" class="validate" [(ngModel)]="customer.name" name="name" placeholder="Name" [ngClass]="NgClassIsValid(name)" (change)="customer.Dirty()" />
+									<span class="helper-text" *ngIf="name.invalid">Required</span>
+
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
 									<label for="contactName">Contact Name</label>
-									<input type="text" [(ngModel)]="customer.contactName" name="contactName" placeholder="Contact" [ngClass]="NgClassIsValid(contactName)" (change)="customer.Dirty()" />
+									<input type="text" class="validate" [(ngModel)]="customer.contactName" name="contactName" placeholder="Contact" [ngClass]="NgClassIsValid(contactName)" (change)="customer.Dirty()" />
+									<span class="helper-text" *ngIf="contactName.invalid">Required</span>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
 									<label for="contactEmail">Contact Email</label>
-									<input type="text" [(ngModel)]="customer.contactEmail" name="contactEmail" placeholder="Email" [ngClass]="NgClassIsValid(contactEmail)" (change)="customer.Dirty()" />
+									<input type="text" class="validate" [(ngModel)]="customer.contactEmail" name="contactEmail" placeholder="Email" [ngClass]="NgClassIsValid(contactEmail)" (change)="customer.Dirty()" />
+									<span class="helper-text" *ngIf="contactName.invalid && contactName.errors.required">Required</span>
+									<span class="helper-text" *ngIf="contactName.invalid && contactName.errors.email">Invalid Email</span>
 								</div>
 							</div>
 							<div class="row">
@@ -62,7 +67,7 @@
 									</ul>
 								</div>
 							</div>
-							<a href="#" class="btn-floating right" (click)="AddNote($event)"><i class="mdi mdi-plus"></i></a>
+							<a href="#" class="btn-floating right red" (click)="AddNote($event)"><i class="mdi mdi-plus"></i></a>
 						</div>
 					</div>
 

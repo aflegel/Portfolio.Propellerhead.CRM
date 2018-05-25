@@ -103,7 +103,14 @@
 			customer.Updated = DateTime.Now;
 
 			//update the customer record
-			_context.Entry(customer).State = EntityState.Modified;
+			if(customer.CustomerId > 0)
+			{
+				_context.Entry(customer).State = EntityState.Modified;
+			}
+			else
+			{
+				customer.Created = DateTime.Now;
+			}
 
 			//update each note
 			foreach (var note in customer.Notes)

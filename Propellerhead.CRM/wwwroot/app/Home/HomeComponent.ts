@@ -94,6 +94,15 @@ export class HomeComponent implements OnInit {
 	}
 
 	/**
+	 * Routes the app to a new customer page.
+	 * @param event
+	 * @param customer
+	 */
+	private Add(event: Event) {
+		this.Load(event, { customerId: 0 } as Customer);
+	}
+
+	/**
 	 * An extention of Get that halts anchor events.
 	 * @param event
 	 */

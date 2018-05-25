@@ -53,7 +53,11 @@ export class EditComponent implements OnInit {
 	 * @param data
 	 */
 	private Set(data: CustomerEdit) {
-		this.customer = data.customer;
+		if (!data.customer) {
+			this.customer = new Customer();
+		} else {
+			this.customer = data.customer;
+		}
 		this.statuses = data.statuses;
 	}
 
@@ -67,6 +71,7 @@ export class EditComponent implements OnInit {
 		//if the customer record is null terminate.
 		if (!this.customer) { return; }
 
+		//if the form has validation issues terminate
 		if (!this.customer.IsValid()) { return; }
 
 		//prepare all objects for transmission

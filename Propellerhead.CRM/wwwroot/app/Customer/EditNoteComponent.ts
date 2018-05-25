@@ -8,7 +8,11 @@ import { Status } from "../Models/Status";
 
 @Component({
 	selector: "[customer-edit-note]",
-	template: `<div class="row row-compact"><div class="col s12"><input type="text" [(ngModel)]="note.content" name="content" [ngClass]="NgClassIsValid(content)" (change)="note.Dirty()"/></div></div>`
+	template: `
+				<div class="row row-compact"><div class="col s12">
+					<input type="text" class="validate" [(ngModel)]="note.content" name="content" [ngClass]="NgClassIsValid(content)" (change)="note.Dirty()"/>
+					<span class="helper-text" *ngIf="content.invalid">Required</span>
+				</div></div>`
 })
 //          <textarea id="textarea1" class="materialize-textarea"></textarea>
 

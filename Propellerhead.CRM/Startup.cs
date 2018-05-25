@@ -3,8 +3,6 @@
 	using PropellerheadCRM.Models.Data;
 	using PropellerheadCRM.Models;
 
-	using AspNet.Security.OpenIdConnect.Primitives;
-	//using AuthorizationServer.Models;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;

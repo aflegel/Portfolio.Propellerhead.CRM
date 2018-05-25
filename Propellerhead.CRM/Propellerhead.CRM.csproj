@@ -3,6 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
 		<RuntimeIdentifiers>linux-arm</RuntimeIdentifiers>
+		<RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
+		<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
 	</PropertyGroup>
 
@@ -13,6 +15,21 @@
 	<PropertyGroup>
 		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="wwwroot\bin\**" />
+	  <Compile Remove="wwwroot\obj\**" />
+	  <Compile Remove="wwwroot\wwwroot\**" />
+	  <Content Remove="wwwroot\bin\**" />
+	  <Content Remove="wwwroot\obj\**" />
+	  <Content Remove="wwwroot\wwwroot\**" />
+	  <EmbeddedResource Remove="wwwroot\bin\**" />
+	  <EmbeddedResource Remove="wwwroot\obj\**" />
+	  <EmbeddedResource Remove="wwwroot\wwwroot\**" />
+	  <None Remove="wwwroot\bin\**" />
+	  <None Remove="wwwroot\obj\**" />
+	  <None Remove="wwwroot\wwwroot\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Remove="wwwroot\app\app.component.js" />

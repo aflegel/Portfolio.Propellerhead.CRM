@@ -31,41 +31,45 @@
 
 			var baseStatus = context.Statuses.FirstOrDefault(f => f.Label == "Current");
 
+			DateTime variedDate = Convert.ToDateTime( "2017-05-01 09:34:56");
+			var i = 1;
+			var j = 1;
+
 			context.Customers.AddRange(
-				new Customer() { Name = "Azalea", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Begonia", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Cyclamen", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Daisy", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Echinacea", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Foxglove", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Geranium", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Hibiscus", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Impatiens", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Jasmine", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Kalmia", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Lavender", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Magnolia", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Nymphea", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Osteospermum", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Pointsettia", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Quince", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Rose", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Syringa", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Tulip", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Ursinia", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Verbena", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Wisteria", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Xylobium", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Yarrow", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Zephyranthes", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId }
+				new Customer() { Name = "Azalea", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Begonia", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Cyclamen", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Daisy", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Echinacea", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Foxglove", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Geranium", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Hibiscus", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Impatiens", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Jasmine", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Kalmia", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Lavender", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Magnolia", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Nymphea", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Osteospermum", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Pointsettia", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Quince", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Rose", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Syringa", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Tulip", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Ursinia", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Verbena", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Wisteria", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Xylobium", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Yarrow", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Zephyranthes", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId }
 				);
 
 			baseStatus = context.Statuses.FirstOrDefault(f => f.Label == "Non-Active");
 
 			context.Customers.AddRange(
-				new Customer() { Name = "Current", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Prospective", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId },
-				new Customer() { Name = "Non-Active", Created = DateTime.Now, Updated = DateTime.Now, StatusId = baseStatus.StatusId }
+				new Customer() { Name = "Current", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Prospective", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId },
+				new Customer() { Name = "Non-Active", Created = variedDate.AddDays(i++), Updated = variedDate.AddDays(i).AddHours(j++), StatusId = baseStatus.StatusId }
 				);
 
 			context.SaveChanges();

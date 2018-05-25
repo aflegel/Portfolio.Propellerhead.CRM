@@ -31,8 +31,8 @@
 								<div class="col s12">
 									<label for="contactEmail">Contact Email</label>
 									<input type="text" class="validate" [(ngModel)]="customer.contactEmail" name="contactEmail" placeholder="Email" [ngClass]="NgClassIsValid(contactEmail)" (change)="customer.Dirty()" />
-									<span class="helper-text" *ngIf="contactName.invalid && contactName.errors.required">Required</span>
-									<span class="helper-text" *ngIf="contactName.invalid && contactName.errors.email">Invalid Email</span>
+									<span class="helper-text" *ngIf="contactEmail.invalid && contactEmail.errors.required">Required</span>
+									<span class="helper-text" *ngIf="contactEmail.invalid && contactEmail.errors.email">Invalid Email</span>
 								</div>
 							</div>
 							<div class="row">
@@ -80,7 +80,10 @@
 			</div>
 		</div>
 	</div>
-	<div *ngIf="customer == null">
-		Loading...
+	<div class="center-align" *ngIf="customer == null">
+		<div class="card-panel">
+			<p>Loading customer</p>
+			<p>Please enjoy a portrait of my home.</p>
+		</div>
 	</div>
 </form>

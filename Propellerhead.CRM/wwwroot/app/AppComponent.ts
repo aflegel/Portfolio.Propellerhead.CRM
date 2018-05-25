@@ -12,12 +12,16 @@ export class AppComponent {
 
 	public version: string;
 
-	public constructor(private titleService: Title) {
+	public constructor(private titleService: Title, private router: Router) {
 		this.version = VERSION.full;
 	}
 
 	// wrapper to the Angular title service.
 	public setTitle(newTitle: string) {
 		this.titleService.setTitle(newTitle);
+	}
+
+	private Portrait() {
+		this.router.navigate(["/portrait/"]);
 	}
 }

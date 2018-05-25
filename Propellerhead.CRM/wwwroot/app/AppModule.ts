@@ -12,6 +12,7 @@ import { AppComponent } from "./AppComponent";
 import { EditComponent } from "./Customer/EditComponent";
 import { EditNoteComponent } from "./Customer/EditNoteComponent";
 import { HomeComponent } from "./Home/HomeComponent";
+import { PortraitComponent } from "./Home/PortraitComponent";
 import { CustomerService } from "./Services/CustomerService";
 
 // enableProdMode();
@@ -27,6 +28,7 @@ import { CustomerService } from "./Services/CustomerService";
 	declarations: [
 		AppComponent,
 		HomeComponent,
+		PortraitComponent,
 		EditNoteComponent,
 		EditComponent,
 	],

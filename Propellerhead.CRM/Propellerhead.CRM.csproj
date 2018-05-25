@@ -218,6 +218,12 @@
 	  <Content Update="wwwroot\app\Customer\EditNoteComponent.js.map">
 	    <DependentUpon>EditNoteComponent.js</DependentUpon>
 	  </Content>
+	  <Content Update="wwwroot\app\Home\PortraitComponent.js">
+	    <DependentUpon>PortraitComponent.ts</DependentUpon>
+	  </Content>
+	  <Content Update="wwwroot\app\Home\PortraitComponent.js.map">
+	    <DependentUpon>PortraitComponent.js</DependentUpon>
+	  </Content>
 	</ItemGroup>
 
 </Project>

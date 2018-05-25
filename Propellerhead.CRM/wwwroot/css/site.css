@@ -6,6 +6,10 @@
 
 main {
 	flex: 1 0 auto;
+	background-image: url('../images/Elevator.svg');
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: 10%;
 }
 
 .body-flex {
@@ -20,13 +24,6 @@ main {
 
 ul.collection.with-header li.collection-item:hover {
 	background-color: #EFFAFF;
-}
-
-span.helper-text {
-	/*position: relative;
-	min-height: 18px;
-	display: block;
-	color: rgba(0,0,0,0.54);*/
 }
 
 input.validate.invalid + span.helper-text {

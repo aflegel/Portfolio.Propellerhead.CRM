@@ -1,12 +1,9 @@
 ﻿namespace PropellerheadCRM.Models.ViewModels
 {
-	using Microsoft.AspNetCore.Routing;
-	using System;
 	using PropellerheadCRM.Models.Customer;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using System.Threading.Tasks;
 
 	public class SearchModel
 	{

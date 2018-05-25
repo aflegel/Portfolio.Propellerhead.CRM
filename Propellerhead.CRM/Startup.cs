@@ -1,16 +1,13 @@
 ﻿namespace PropellerheadCRM
 {
-	using PropellerheadCRM.Models.Data;
-	using PropellerheadCRM.Models;
-
 	using Microsoft.AspNetCore.Builder;
-	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
-	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.Extensions.FileProviders;
 	using Microsoft.Extensions.Logging;
+	using PropellerheadCRM.Models.Data;
 	using System.IO;
 
 	public class Startup

@@ -11,11 +11,6 @@ namespace PropellerheadCRM.Models.Data
 		{
 		}
 
-		//protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		//{
-		//	optionsBuilder.UseSqlServer(@"Server=Alex-Desktop;Database=Portfolio.Propellerhead.CRM;integrated security=True;MultipleActiveResultSets=true");
-		//}
-
 		public virtual DbSet<Customer> Customers { get; set; }
 		public virtual DbSet<Note> Notes { get; set; }
 		public virtual DbSet<Status> Statuses { get; set; }

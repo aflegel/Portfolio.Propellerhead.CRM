@@ -1,8 +1,8 @@
 ﻿import { Routes, RouterModule } from "@angular/router";
 
-import { EditComponent } from "./Customer/EditComponent";
-import { HomeComponent } from "./Home/HomeComponent";
-import { PortraitComponent } from "./Home/PortraitComponent";
+import { EditComponent } from "./Customer/Edit.Component";
+import { HomeComponent } from "./Home/Home.Component";
+import { PortraitComponent } from "./Home/Portrait.Component";
 
 const appRoutes: Routes = [
 	{ path: "", pathMatch: "full" , component: HomeComponent, data: { title: "Home" } },

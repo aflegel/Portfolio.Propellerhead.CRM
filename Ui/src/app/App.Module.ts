@@ -8,12 +8,12 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { AppRoutes } from "./Routes";
 
-import { AppComponent } from "./AppComponent";
-import { EditComponent } from "./Customer/EditComponent";
-import { EditNoteComponent } from "./Customer/EditNoteComponent";
-import { HomeComponent } from "./Home/HomeComponent";
-import { PortraitComponent } from "./Home/PortraitComponent";
-import { CustomerService } from "./Services/CustomerService";
+import { AppComponent } from "./App.Component";
+import { EditComponent } from "./Customer/Edit.Component";
+import { EditNoteComponent } from "./Customer/EditNote.Component";
+import { HomeComponent } from "./Home/Home.Component";
+import { PortraitComponent } from "./Home/Portrait.Component";
+import { CustomerService } from "./Services/Customer.Service";
 
 // enableProdMode();
 

@@ -2,7 +2,7 @@
 import { ActivatedRoute } from "@angular/router";
 import { NgClassIsValid } from "../Framework/TextboxValidators";
 
-import { CustomerService } from "../Services/CustomerService";
+import { CustomerService } from "../Services/Customer.Service";
 
 import { Customer, CustomerEdit } from "../Models/Customer";
 import { Note } from "../Models/Note";

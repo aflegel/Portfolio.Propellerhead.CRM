@@ -1,5 +1,3 @@
-import "./Operators";
-
 import { NgModule, enableProdMode } from "@angular/core";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { APP_BASE_HREF, Location } from "@angular/common";

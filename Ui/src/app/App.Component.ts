@@ -1,12 +1,10 @@
 import { Component, VERSION } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Version } from "@angular/compiler";
 
 @Component({
 	selector: "propellerhead-crm-app",
-	templateUrl: "/app/AppComponent.html"
+	templateUrl: "App.Component.html"
 })
 export class AppComponent {
 
@@ -21,7 +19,7 @@ export class AppComponent {
 		this.titleService.setTitle(newTitle);
 	}
 
-	private Portrait() {
+	public Portrait() {
 		this.router.navigate(["/portrait/"]);
 	}
 }

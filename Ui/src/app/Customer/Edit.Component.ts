@@ -11,7 +11,7 @@ import { Status } from "../Models/Status";
 
 @Component({
 	selector: "customer-edit",
-	templateUrl: "/app/Customer/EditComponent.html"
+	templateUrl: "Edit.Component.html"
 })
 
 export class EditComponent implements OnInit {

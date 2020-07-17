@@ -5,7 +5,7 @@ import { CustomerIndex, Customer } from "../Models/Customer";
 
 @Component({
 	selector: "home-index",
-	templateUrl: "/app/Home/HomeComponent.html"
+	templateUrl: "Home.Component.html"
 })
 
 export class HomeComponent implements OnInit {
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
 	 * @param event
 	 * @param customer
 	 */
-	private Load(event: Event, customer: Customer) {
+	public Load(event: Event, customer: Customer) {
 		event.preventDefault();
 
 		this.router.navigate(["/customer/", customer.customerId]);
@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
 	 * @param event
 	 * @param customer
 	 */
-	private Add(event: Event) {
+	public Add(event: Event) {
 		this.Load(event, { customerId: 0 } as Customer);
 	}
 
@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
 	 * An extension of Get that halts anchor events.
 	 * @param event
 	 */
-	private Search(event: Event) {
+	public Search(event: Event) {
 		event.preventDefault();
 
 		this.Get();
@@ -117,7 +117,7 @@ export class HomeComponent implements OnInit {
 	 * @param event
 	 * @param orderBy
 	 */
-	private Sort(event: Event, orderBy: string): void {
+	public Sort(event: Event, orderBy: string): void {
 		this.sort = orderBy;
 
 		this.Get();

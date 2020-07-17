@@ -10,7 +10,9 @@
 			true,
 			"check-space"
 		],
-		"curly": 1,
+		"curly": {
+            "severity": "warn"
+        },
 		"deprecation": {
 			"severity": "warn"
 		},
@@ -49,7 +51,9 @@
 			}
 		],
 		"no-arg": true,
-		"no-bitwise": 2,
+		"no-bitwise": {
+            "severity": "warn"
+        },
 		"no-console": [
 			true,
 			"debug",

@@ -9,13 +9,15 @@
 					<div class="input-field col l6 s12">
 
 						<a class="prefix" href="#" (click)="Search($event)"><i class="mdi mdi-magnify prefix"></i></a>
-						<input type="text" [(ngModel)]="query" name="query" placeholder="Search" (keyup.enter)="Search($event)" />
+						<input type="text" [(ngModel)]="query" name="query" placeholder="Search"
+							(keyup.enter)="Search($event)" />
 					</div>
 				</div>
 				<div class="row row-compact">
 					<div class="col m3 s4"><a href="#" (click)="Sort($event, nameSort)">Name</a></div>
 					<div class="col m3 s4"><a href="#" (click)="Sort($event, statusSort)">Status</a></div>
-					<div class="col m2 hide-on-small-and-down"><a href="#" (click)="Sort($event, createdSort)">Created</a></div>
+					<div class="col m2 hide-on-small-and-down"><a href="#"
+							(click)="Sort($event, createdSort)">Created</a></div>
 					<div class="col m2 s4"><a href="#" (click)="Sort($event, updatedSort)">Updated</a></div>
 				</div>
 			</li>

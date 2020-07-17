@@ -30,11 +30,56 @@ export class HomeComponent implements OnInit {
 	}
 
 	/**
+	 * Routes the app to the customer record with id.
+	 * @param event
+	 * @param customer
+	 */
+	public Load(event: Event, customer: Customer) {
+		event.preventDefault();
+
+		this.router.navigate(["/customer/", customer.customerId]);
+	}
+
+	/**
+	 * Routes the app to a new customer page.
+	 * @param event
+	 * @param customer
+	 */
+	public Add(event: Event) {
+		this.Load(event, { customerId: 0 } as Customer);
+	}
+
+	/**
+	 * An extension of Get that halts anchor events.
+	 * @param event
+	 */
+	public Search(event: Event) {
+		event.preventDefault();
+
+		this.Get();
+	}
+
+	/**
+	 * Updates the sort parameter and calls Get
+	 * @param event
+	 * @param orderBy
+	 */
+	public Sort(event: Event, orderBy: string): void {
+		this.sort = orderBy;
+
+		this.Get();
+	}
+
+	/**
 	 * Fetches the list of customer records.  Transmits query and sort information.
 	 * */
 	private Get() {
 		//Filtering and sorting is performed server side.  When pagination is introduced the client will only receive a subset of records.
-		var indexData: CustomerIndex = new CustomerIndex({ query: this.query, customers: [], sort: this.sort } as CustomerIndex);
+		var indexData: CustomerIndex = {
+			query: this.query,
+			customers: [],
+			sort: this.sort
+		};
 
 		this.customerService.GetCustomerIndex(indexData)
 			.subscribe((data: CustomerIndex) => indexData = data,
@@ -80,46 +125,5 @@ export class HomeComponent implements OnInit {
 			default:
 				break;
 		}
-	}
-
-	/**
-	 * Routes the app to the customer record with id.
-	 * @param event
-	 * @param customer
-	 */
-	public Load(event: Event, customer: Customer) {
-		event.preventDefault();
-
-		this.router.navigate(["/customer/", customer.customerId]);
-	}
-
-	/**
-	 * Routes the app to a new customer page.
-	 * @param event
-	 * @param customer
-	 */
-	public Add(event: Event) {
-		this.Load(event, { customerId: 0 } as Customer);
-	}
-
-	/**
-	 * An extension of Get that halts anchor events.
-	 * @param event
-	 */
-	public Search(event: Event) {
-		event.preventDefault();
-
-		this.Get();
-	}
-
-	/**
-	 * Updates the sort parameter and calls Get
-	 * @param event
-	 * @param orderBy
-	 */
-	public Sort(event: Event, orderBy: string): void {
-		this.sort = orderBy;
-
-		this.Get();
 	}
 }

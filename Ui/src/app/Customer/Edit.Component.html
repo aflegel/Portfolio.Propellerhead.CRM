@@ -15,44 +15,52 @@
 							<div class="row">
 								<div class="col s12">
 									<label for="name">Name</label>
-									<input type="text" class="validate" [(ngModel)]="customer.name" name="name" placeholder="Name" [ngClass]="NgClassIsValid(name)" (change)="customer.Dirty()" />
-									<span class="helper-text" *ngIf="name.invalid">Required</span>
+									<input type="text" class="validate" [(ngModel)]="customer.name" name="name" required
+										placeholder="Name" #name="ngModel" />
+									<span class="helper-text" *ngIf="name.errors.required">Required</span>
 
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
 									<label for="contactName">Contact Name</label>
-									<input type="text" class="validate" [(ngModel)]="customer.contactName" name="contactName" placeholder="Contact" [ngClass]="NgClassIsValid(contactName)" (change)="customer.Dirty()" />
-									<span class="helper-text" *ngIf="contactName.invalid">Required</span>
+									<input type="text" class="validate" [(ngModel)]="customer.contactName"
+										name="contactName" placeholder="Contact" #contactName="ngModel" />
+									<span class="helper-text" *ngIf="contactName.errors.required">Required</span>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
 									<label for="contactEmail">Contact Email</label>
-									<input type="text" class="validate" [(ngModel)]="customer.contactEmail" name="contactEmail" placeholder="Email" [ngClass]="NgClassIsValid(contactEmail)" (change)="customer.Dirty()" />
-									<span class="helper-text" *ngIf="contactEmail.invalid && contactEmail.errors.required">Required</span>
-									<span class="helper-text" *ngIf="contactEmail.invalid && contactEmail.errors.email">Invalid Email</span>
+									<input type="email" required class="validate" [(ngModel)]="customer.contactEmail"
+										name="contactEmail" placeholder="Email" #contactEmail="ngModel" />
+									<span class="helper-text"
+										*ngIf="contactEmail.invalid && contactEmail.errors.required">Required</span>
+									<span class="helper-text"
+										*ngIf="contactEmail.invalid && contactEmail.errors.email">Invalid Email</span>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
 									<label for="contactEmail">Status</label>
 									<select class="browser-default" [(ngModel)]="customer.statusId" name="statusId">
-										<option *ngFor="let status of statuses" value="{{status.statusId}}">{{status.label}}</option>
+										<option *ngFor="let status of statuses" value="{{status.statusId}}">
+											{{status.label}}</option>
 									</select>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
 									<label for="created">Created</label>
-									<input type="text" disabled [value]="customer.created | date:'medium'" name="created" placeholder="Created" />
+									<input type="text" disabled [value]="customer.created | date:'medium'"
+										name="created" placeholder="Created" />
 								</div>
 							</div>
 							<div class="row">
 								<div class="col s12">
 									<label for="updated">Updated</label>
-									<input type="text" disabled [value]="customer.updated | date:'medium'" name="updated" placeholder="Updated" />
+									<input type="text" disabled [value]="customer.updated | date:'medium'"
+										name="updated" placeholder="Updated" />
 								</div>
 							</div>
 						</div>
@@ -63,11 +71,13 @@
 								<div class="col s12">
 									<label for="updated">Notes</label>
 									<ul class="collection" *ngIf="customer.notes != null && customer.notes.length > 0">
-										<li class="collection-item" customer-edit-note *ngFor="let note of customer.notes" [note]="note"></li>
+										<li class="collection-item" customer-edit-note
+											*ngFor="let note of customer.notes" [note]="note"></li>
 									</ul>
 								</div>
 							</div>
-							<a href="#" class="btn-floating right red" (click)="AddNote($event)"><i class="mdi mdi-plus"></i></a>
+							<a href="#" class="btn-floating right red" (click)="AddNote($event)"><i
+									class="mdi mdi-plus"></i></a>
 						</div>
 					</div>
 

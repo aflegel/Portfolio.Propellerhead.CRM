@@ -6,8 +6,8 @@ namespace Propellerhead.Crm.DataLayer.Services
 {
 	public interface ICustomerService
 	{
-		IQueryable<Customer> Customers { get; }
 		IEnumerable<Status> Statuses { get; }
+		IEnumerable<Customer> Search(IEnumerable<KeyValuePair<string, string>> tokens, string sort);
 		Customer GetById(int id);
 		Customer Update(Customer record);
 	}

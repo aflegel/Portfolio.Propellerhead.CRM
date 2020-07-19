@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Propellerhead.Crm.DataLayer.Context;
+using Propellerhead.Crm.DataLayer.Extensions;
 using Propellerhead.Crm.DataLayer.Models;
 
 namespace Propellerhead.Crm.DataLayer.Services
@@ -16,9 +17,24 @@ namespace Propellerhead.Crm.DataLayer.Services
 		/// <summary>
 		/// Returns the customer data in a specific format
 		/// </summary>
-		public IQueryable<Customer> Customers => CustomerContext.Customers
+		private IQueryable<Customer> Customers => CustomerContext.Customers
 				.Include(i => i.Notes)
 				.Include(i => i.Status);
+
+		public IEnumerable<Customer> Search(IEnumerable<KeyValuePair<string, string>> tokens, string sort)
+		{
+			var sortPredicate = sort.SortPredicate();
+
+			var inventory = Customers.Where(tokens.SearchPredicate());
+
+			return (sort switch
+			{
+				"status-descending" => inventory.OrderByDescending(sortPredicate),
+				"updated-descending" => inventory.OrderByDescending(sortPredicate),
+				"created-descending" => inventory.OrderByDescending(sortPredicate),
+				_ => inventory.OrderBy(sortPredicate)
+			}).ToList();
+		}
 
 		public IEnumerable<Status> Statuses => CustomerContext.Statuses.ToList();
 

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Propellerhead.Crm.DataLayer.Models;
 using Propellerhead.Crm.DataLayer.Services;
+using Propellerhead.Crm.Extensions;
 using Propellerhead.Crm.Models;
 
 namespace Propellerhead.Crm.Controllers
@@ -17,26 +16,7 @@ namespace Propellerhead.Crm.Controllers
 
 		// GET: api/values
 		[HttpPost()]
-		public ActionResult<CustomerIndex> GetIndex([FromBody] CustomerIndex index)
-		{
-			var customers = CustomerService.Customers;
-
-			var search = new SearchModel
-			{
-				Query = index.Query,
-				Sort = index.Sort
-			};
-
-			//search.Filter(ref customers);
-			//search.Order(ref customers);
-
-			return new CustomerIndex()
-			{
-				Customers = customers.ToList(),
-				Query = index.Query,
-				Sort = index.Sort
-			};
-		}
+		public ActionResult<IEnumerable<Customer>> GetIndex([FromBody] SearchModel index) => Ok(CustomerService.Search(index.Query.BuildKeywords(), index.Sort));
 
 		/// <summary>
 		/// Fetches any matching customer record and the available statuses
@@ -44,11 +24,7 @@ namespace Propellerhead.Crm.Controllers
 		/// <param name="id"></param>
 		/// <returns></returns>
 		[HttpGet("{id}")]
-		public ActionResult<CustomerEdit> Get(int id) => new CustomerEdit
-		{
-			Customer = CustomerService.GetById(id),
-			Statuses = CustomerService.Statuses
-		};
+		public ActionResult<Customer> Get(int id) => CustomerService.GetById(id);
 
 		/// <summary>
 		/// Updates a Customer record and all Note records associated
@@ -56,10 +32,6 @@ namespace Propellerhead.Crm.Controllers
 		/// <param name="id"></param>
 		/// <param name="customer"></param>
 		[HttpPut("{id}")]
-		public CustomerEdit Put(int _, [FromBody] Customer customer) => new CustomerEdit
-		{
-			Customer = CustomerService.Update(customer),
-			Statuses = CustomerService.Statuses
-		};
+		public ActionResult<Customer> Put(int _, [FromBody] Customer customer) => CustomerService.Update(customer);
 	}
 }

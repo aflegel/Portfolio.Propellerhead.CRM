@@ -21,7 +21,7 @@ namespace Propellerhead.Crm
 			services.AddMvc();
 
 			services.AddCustomerDatabase();
-			services.AddSingleton<ICustomerService, CustomerService>();
+			services.AddScoped<ICustomerService, CustomerService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,7 +29,8 @@ namespace Propellerhead.Crm
 		{
 			app.UseCors(builder =>
 			{
-				builder.WithOrigins("http://localhost:5055");
+				//builder.WithOrigins("http://localhost:5055");
+				builder.AllowAnyOrigin();
 				builder.AllowAnyHeader();
 				builder.AllowAnyMethod();
 			});

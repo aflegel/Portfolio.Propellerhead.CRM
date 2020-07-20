@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { CustomerService } from "../Services/Customer.Service";
@@ -7,6 +7,7 @@ import { Customer } from "../Models/Customer";
 import { Note } from "../Models/Note";
 import { Status } from "../Models/Status";
 import { StatusService } from "../Services/Status.Service";
+import { NgForm } from "@angular/forms";
 
 @Component({
 	selector: "customer-edit",
@@ -19,6 +20,9 @@ export class EditComponent implements OnInit {
 	public statuses: Status[];
 	public errorMessage: string;
 
+	@ViewChild("EditCustomer") public customerForm: NgForm;
+
+
 	constructor(public route: ActivatedRoute, private companyService: CustomerService, private statusService: StatusService) {
 		this.statuses = [];
 	}
@@ -28,7 +32,22 @@ export class EditComponent implements OnInit {
 		const sub = this.route.params.subscribe(params => customerId = +params.id);
 
 		this.GetStatus();
-		this.Get(customerId);
+
+		if (customerId) {
+			this.Get(customerId);
+		}
+		else {
+			this.customer = {
+				customerId: -1,
+				name: "",
+				contactName: "",
+				contactEmail: "",
+				notes: [],
+				created: new Date(Date.now()),
+				updated:  new Date(Date.now()),
+				statusId: 1,
+			};
+		}
 	}
 
 	/**
@@ -52,7 +71,8 @@ export class EditComponent implements OnInit {
 	public Update(event: Event): void {
 		event.preventDefault();
 
-		// if the customer record is null terminate.
+		if (this.customerForm.invalid) { return; }
+
 		if (!this.customer) { return; }
 
 		this.companyService.Update(this.customer)
@@ -64,6 +84,8 @@ export class EditComponent implements OnInit {
 	 * */
 	public AddNote(event: Event): void {
 		event.preventDefault();
+
+		if (this.customerForm.invalid) { return; }
 
 		// if any notes are invalid prevent adding a new note
 		for (const note of this.customer.notes) {

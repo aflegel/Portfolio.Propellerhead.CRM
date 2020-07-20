@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Propellerhead.Crm.DataLayer.Context;
 using Propellerhead.Crm.DataLayer.Extensions;
@@ -38,43 +39,48 @@ namespace Propellerhead.Crm.DataLayer.Services
 
 		public IEnumerable<Status> Statuses => CustomerContext.Statuses.ToList();
 
-		public Customer GetById(int id) => Customers
-			.Where(c => c.CustomerId == id)
-				.FirstOrDefault();
+		public Task<Customer> GetById(int id) => Customers
+				.FirstOrDefaultAsync(c => c.CustomerId == id);
 
-		public Customer Update(Customer record)
+		public async Task<Customer> Update(Customer customer)
 		{
-			CustomerContext.Attach(record);
-
-			record.Updated = DateTime.Now;
-
 			//update the customer record
-			if (record.CustomerId > 0)
+			var record = await GetById(customer.CustomerId);
+
+			if (record != null)
 			{
-				CustomerContext.Entry(record).State = EntityState.Modified;
+				CustomerContext.Entry(record).CurrentValues.SetValues(customer);
+
+
+				await CustomerContext.SaveChangesAsync();
+
+				return record;
+
+				////update each note
+				//foreach (var note in customer.Notes)
+				//{
+				//	if (note.NoteId > 0)
+				//	{
+				//		CustomerContext.Entry(note).State = EntityState.Modified;
+				//	}
+				//	else
+				//	{
+				//		//if the note is new, add a created date
+				//		note.Created = DateTime.Now;
+				//	}
+				//}
+				//return record;
 			}
 			else
 			{
-				record.Created = DateTime.Now;
+				customer.Created = DateTime.Now;
+
+				var newrecord = CustomerContext.Customers.Add(customer);
+
+				await CustomerContext.SaveChangesAsync();
+
+				return newrecord.Entity;
 			}
-
-			//update each note
-			foreach (var note in record.Notes)
-			{
-				if (note.NoteId > 0)
-				{
-					CustomerContext.Entry(note).State = EntityState.Modified;
-				}
-				else
-				{
-					//if the note is new, add a created date
-					note.Created = DateTime.Now;
-				}
-			}
-
-			CustomerContext.SaveChanges();
-
-			return record;
 		}
 	}
 }

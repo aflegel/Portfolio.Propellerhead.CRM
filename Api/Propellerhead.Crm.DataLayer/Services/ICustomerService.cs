@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using Propellerhead.Crm.DataLayer.Models;
 
 namespace Propellerhead.Crm.DataLayer.Services
@@ -8,7 +8,7 @@ namespace Propellerhead.Crm.DataLayer.Services
 	{
 		IEnumerable<Status> Statuses { get; }
 		IEnumerable<Customer> Search(IEnumerable<KeyValuePair<string, string>> tokens, string sort);
-		Customer GetById(int id);
-		Customer Update(Customer record);
+		Task<Customer> GetById(int id);
+		Task<Customer> Update(Customer record);
 	}
 }

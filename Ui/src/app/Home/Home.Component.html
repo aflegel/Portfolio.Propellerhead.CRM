@@ -7,10 +7,9 @@
 						<h4>Customers</h4>
 					</div>
 					<div class="input-field col l6 s12">
-
-						<a class="prefix" href="#" (click)="Search($event)"><i class="material-icons prefix">search</i></a>
-						<input type="text" [(ngModel)]="query" name="query" placeholder="Search"
-							(keyup.enter)="Search($event)" />
+						<i class="material-icons prefix">search</i>
+						<input type="text" [(ngModel)]="query" name="query" (keyup.enter)="Search($event)" />
+						<label for="query">Search</label>
 					</div>
 				</div>
 				<div class="row row-compact">

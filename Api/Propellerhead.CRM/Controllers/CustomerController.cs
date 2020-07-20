@@ -16,7 +16,7 @@ namespace Propellerhead.Crm.Controllers
 
 		// GET: api/values
 		[HttpPost()]
-		public ActionResult<IEnumerable<Customer>> GetIndex([FromBody] SearchModel index) => Ok(CustomerService.Search(index.Query.BuildKeywords(), index.Sort));
+		public ActionResult<IEnumerable<Customer>> Index([FromBody] SearchModel index) => Ok(CustomerService.Search(index.Query.BuildKeywords(), index.Sort));
 
 		/// <summary>
 		/// Fetches any matching customer record and the available statuses

@@ -17,7 +17,7 @@
 									<label for="name">Name</label>
 									<input type="text" class="validate" [(ngModel)]="customer.name" name="name" required
 										placeholder="Name" #name="ngModel" />
-									<span class="helper-text" *ngIf="name.errors.required">Required</span>
+									<span class="helper-text" *ngIf="name.invalid && name.errors.required">Required</span>
 
 								</div>
 							</div>
@@ -26,7 +26,7 @@
 									<label for="contactName">Contact Name</label>
 									<input type="text" class="validate" [(ngModel)]="customer.contactName"
 										name="contactName" placeholder="Contact" #contactName="ngModel" />
-									<span class="helper-text" *ngIf="contactName.errors.required">Required</span>
+									<span class="helper-text" *ngIf="contactName.invalid && contactName.errors.required">Required</span>
 								</div>
 							</div>
 							<div class="row">
@@ -77,7 +77,7 @@
 								</div>
 							</div>
 							<a href="#" class="btn-floating right red" (click)="AddNote($event)"><i
-									class="mdi mdi-plus"></i></a>
+									class="material-icons">add</i></a>
 						</div>
 					</div>
 

@@ -1,5 +1,5 @@
 ﻿export interface Note {
 	noteId: number;
-	content: string; //required
+	content: string; // required
 	created: Date;
 }

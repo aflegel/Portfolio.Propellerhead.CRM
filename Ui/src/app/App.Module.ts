@@ -12,6 +12,7 @@ import { EditNoteComponent } from "./Customer/EditNote.Component";
 import { HomeComponent } from "./Home/Home.Component";
 import { PortraitComponent } from "./Home/Portrait.Component";
 import { CustomerService } from "./Services/Customer.Service";
+import { StatusService } from "./Services/Status.Service";
 
 // enableProdMode();
 
@@ -34,6 +35,7 @@ import { CustomerService } from "./Services/Customer.Service";
 		EditComponent],
 	providers: [
 		CustomerService,
+		StatusService,
 		Title,
 		{ provide: APP_BASE_HREF, useValue: "/" }],
 	bootstrap: [AppComponent]

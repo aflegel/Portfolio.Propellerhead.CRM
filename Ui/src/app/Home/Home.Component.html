@@ -8,7 +8,7 @@
 					</div>
 					<div class="input-field col l6 s12">
 
-						<a class="prefix" href="#" (click)="Search($event)"><i class="mdi mdi-magnify prefix"></i></a>
+						<a class="prefix" href="#" (click)="Search($event)"><i class="material-icons prefix">search</i></a>
 						<input type="text" [(ngModel)]="query" name="query" placeholder="Search"
 							(keyup.enter)="Search($event)" />
 					</div>
@@ -29,7 +29,7 @@
 						<div class="col m2 hide-on-small-and-down">{{customer.created | date:'mediumDate'}}</div>
 						<div class="col m2 s3">{{customer.updated | date:'mediumDate'}}</div>
 						<div class="col s1">
-							<a href="#" (click)="Load($event, customer)"><i class="mdi mdi-pencil"></i></a>
+							<a href="#" (click)="Load($event, customer)"><i class="material-icons">edit</i></a>
 						</div>
 					</div>
 				</li>
@@ -39,6 +39,6 @@
 </div>
 <div class="fixed-action-btn">
 	<a href="#" class="btn-floating btn-large red" (click)="Add($event)">
-		<i class="large mdi mdi-plus"></i>
+		<i class="large material-icons">add</i>
 	</a>
 </div>

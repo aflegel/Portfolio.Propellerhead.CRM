@@ -10,7 +10,7 @@ namespace Propellerhead.Crm.DataLayer.Extensions
 	{
 		public static Func<Customer, bool> SearchPredicate(this IEnumerable<KeyValuePair<string, string>> tokens) => tokens
 				.Select(GetPredicate)
-				.Aggregate((current, next) => o => current.Invoke(o) && next.Invoke(o));
+				.Aggregate((Func<Customer, bool>)(t => true), (current, next) => o => current.Invoke(o) && next.Invoke(o));
 
 		private static Func<Customer, bool> GetPredicate(KeyValuePair<string, string> token) => token.Value.ToLower() switch
 		{

@@ -1,15 +1,13 @@
 ﻿import { Note } from "./Note";
 import { Status } from "./Status";
 
-export interface CustomerIndex {
-	customers: Customer[];
+export interface CustomerSearch {
 	query: string;
 	sort: string;
 }
 
-export interface CustomerEdit {
-	customer: Customer;
-	statuses: Status[];
+export interface CustomerIndex {
+	customers: Customer[];
 }
 
 export interface Customer {

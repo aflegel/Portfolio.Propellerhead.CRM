@@ -4,9 +4,10 @@ import { NgClassIsValid } from "../Framework/TextboxValidators";
 
 import { CustomerService } from "../Services/Customer.Service";
 
-import { Customer, CustomerEdit } from "../Models/Customer";
+import { Customer } from "../Models/Customer";
 import { Note } from "../Models/Note";
 import { Status } from "../Models/Status";
+import { StatusService } from "../Services/Status.Service";
 
 @Component({
 	selector: "customer-edit",
@@ -20,16 +21,15 @@ export class EditComponent implements OnInit {
 	public errorMessage: string;
 	public NgClassIsValid = NgClassIsValid;
 
-	constructor(public route: ActivatedRoute, private companyService: CustomerService) {
+	constructor(public route: ActivatedRoute, private companyService: CustomerService, private statusService: StatusService) {
 		this.statuses = [];
 	}
 
 	public ngOnInit(): void {
 		let customerId: number;
-		const sub = this.route.params.subscribe(params => {
-			customerId = +params.id; // (+) converts string "id" to a number
-		});
+		const sub = this.route.params.subscribe(params => customerId = +params.id);
 
+		this.GetStatus();
 		this.Get(customerId);
 	}
 
@@ -38,23 +38,13 @@ export class EditComponent implements OnInit {
 	 * @param id
 	 */
 	public Get(id: number): void {
-		let subscribedData: CustomerEdit;
-
-		this.companyService.GetCustomer(id)
-			.subscribe((data: CustomerEdit) => subscribedData = data, // makes the api call and sets the data
-				error => this.errorMessage = <any>error,                  // what to do with an error
-				() => this.Set(subscribedData));                          // what to do with the call response
+		this.companyService.Get(id)
+			.subscribe((data: Customer) => this.customer = data);
 	}
 
-	/**
-	 * Sets the customer data and the available statuses
-	 * @param data
-	 */
-	public Set(data: CustomerEdit): void {
-		if (data.customer) {
-			this.customer = data.customer;
-		}
-		this.statuses = data.statuses;
+	public GetStatus(): void {
+		this.statusService.Index()
+			.subscribe((data: Status[]) => this.statuses = data);
 	}
 
 	/**
@@ -67,12 +57,8 @@ export class EditComponent implements OnInit {
 		// if the customer record is null terminate.
 		if (!this.customer) { return; }
 
-		let subscribedData: any;
-
-		this.companyService.UpdateCustomer(this.customer)
-			.subscribe((data: CustomerEdit) => subscribedData = data, // makes the api call and sets the data
-				error => this.errorMessage = <any>error,                  // what to do with an error
-				() => this.Set(subscribedData));                          // what to do with the call response
+		this.companyService.Update(this.customer)
+			.subscribe((data: Customer) => this.customer = data);
 	}
 
 	/**
@@ -88,6 +74,6 @@ export class EditComponent implements OnInit {
 			}*/
 		}
 
-		//this.customer.notes.push({ noteId: "", content: "", created: "" });
+		this.customer.notes.push({ noteId: 0, content: "", created: new Date(Date.now()) });
 	}
 }

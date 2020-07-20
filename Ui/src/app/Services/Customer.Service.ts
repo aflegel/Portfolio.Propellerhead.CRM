@@ -3,29 +3,29 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { jsonHeaders } from "./HeaderUtility";
-import { Customer, CustomerIndex, CustomerEdit } from "../Models/Customer";
+import { Customer, CustomerSearch } from "../Models/Customer";
 
 @Injectable()
 export class CustomerService {
-	private url = "customer";
+	private url = "http://localhost:57739/" + "customer";
 
 	constructor(private http: HttpClient) { }
 
-	public GetCustomer(id: number): Observable<CustomerEdit> {
-		return this.http.get<CustomerEdit>(`${this.url}/Get/${id}`, { headers: jsonHeaders() });
+	public Get(id: number): Observable<Customer> {
+		return this.http.get<Customer>(`${this.url}/${id}`, { headers: jsonHeaders() });
 	}
 
-	public GetCustomerIndex(query: CustomerIndex): Observable<CustomerIndex> {
-		return this.http.post<CustomerIndex>(`${this.url}/GetIndex`, JSON.stringify(query), { headers: jsonHeaders() });
+	public Index(query: CustomerSearch): Observable<Customer[]> {
+		return this.http.post<Customer[]>(this.url + "/", JSON.stringify(query), { headers: jsonHeaders() });
 	}
 
-	public UpdateCustomer(customer: Customer): Observable<CustomerEdit> {
+	public Update(customer: Customer): Observable<Customer> {
 		return this.http
-			.put<CustomerEdit>(`${this.url}/Put/${customer.customerId}`, JSON.stringify(customer), { headers: jsonHeaders() });
+			.put<Customer>(`${this.url}/${customer.customerId}`, JSON.stringify(customer), { headers: jsonHeaders() });
 	}
 
-	public AddCustomer(customer: Customer): Observable<CustomerEdit> {
+	public Add(customer: Customer): Observable<Customer> {
 		return this.http
-			.post<CustomerEdit>(this.url, JSON.stringify(customer), { headers: jsonHeaders() });
+			.post<Customer>(this.url, JSON.stringify(customer), { headers: jsonHeaders() });
 	}
 }

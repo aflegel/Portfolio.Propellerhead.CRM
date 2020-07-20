@@ -5,13 +5,7 @@
 		<RuntimeIdentifiers>linux-arm</RuntimeIdentifiers>
 		<RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
 		<RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
-		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
 	</PropertyGroup>
-
-	<PropertyGroup>
-		<PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-	</PropertyGroup>
-
 	<PropertyGroup>
 		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
 		<AssemblyName>Propellerhead.Crm</AssemblyName>

@@ -5,7 +5,7 @@ import { Status } from "../Models/Status";
 
 @Injectable()
 export class StatusService {
-	private url = "status";
+	private url = "http://localhost:57739/" + "status";
 
 	constructor(private http: HttpClient) { }
 

@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { NgClassIsValid } from "../Framework/TextboxValidators";
 
 import { CustomerService } from "../Services/Customer.Service";
 
@@ -19,7 +18,6 @@ export class EditComponent implements OnInit {
 	public customer: Customer;
 	public statuses: Status[];
 	public errorMessage: string;
-	public NgClassIsValid = NgClassIsValid;
 
 	constructor(public route: ActivatedRoute, private companyService: CustomerService, private statusService: StatusService) {
 		this.statuses = [];

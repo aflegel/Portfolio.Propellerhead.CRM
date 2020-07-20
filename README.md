@@ -30,6 +30,16 @@ A simple customer relationship demo application.
 
 * run `dotnet restore`
 
+### Run
+
+#### UI
+
+* `ng serve`
+
+#### API
+
+* `dotnet run  --project Api\Propellerhead.CRM\Propellerhead.CRM.csproj`
+
 ## Information
 
 ### Entity Relation Diagram

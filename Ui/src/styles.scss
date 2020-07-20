@@ -6,10 +6,11 @@
 
 main {
 	flex: 1 0 auto;
-	//background-image: url('../images/Elevator.svg');
+	background-image: url('assets/Elevator.svg');
 	background-repeat: no-repeat;
-	background-position: bottom;
+	background-position: bottom left 3%;
 	background-size: 10%;
+	padding-bottom: 3%;
 }
 
 .body-flex {

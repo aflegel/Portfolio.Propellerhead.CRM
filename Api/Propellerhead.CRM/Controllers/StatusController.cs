@@ -12,8 +12,7 @@ namespace Propellerhead.Crm.Controllers
 
 		public StatusController(ICustomerService context) => CustomerService = context;
 
-		// GET: api/values
-		[HttpGet()]
+		[HttpGet]
 		public ActionResult<IEnumerable<Status>> Get() => Ok(CustomerService.Statuses);
 	}
 }

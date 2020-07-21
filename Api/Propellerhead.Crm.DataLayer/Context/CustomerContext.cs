@@ -13,9 +13,9 @@ namespace Propellerhead.Crm.DataLayer.Context
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Note>()
-				.HasOne(e => e.Customer)
-				.WithMany(c => c.Notes);
+			modelBuilder.Entity<Customer>()
+				.HasMany(e => e.Notes)
+				.WithOne(c => c.Customer);
 
 			modelBuilder.Entity<Customer>()
 				.HasOne(e => e.Status)

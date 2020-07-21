@@ -16,7 +16,7 @@ export class CustomerService {
 	}
 
 	public Index(query: CustomerSearch): Observable<Customer[]> {
-		return this.http.post<Customer[]>(this.url + "/", JSON.stringify(query), { headers: jsonHeaders() });
+		return this.http.post<Customer[]>(`${this.url}/`, JSON.stringify(query), { headers: jsonHeaders() });
 	}
 
 	public Update(customer: Customer): Observable<Customer> {

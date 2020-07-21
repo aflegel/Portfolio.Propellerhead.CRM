@@ -75,6 +75,8 @@ export class EditComponent implements OnInit {
 
 		if (!this.customer) { return; }
 
+		this.customer.status = undefined;
+
 		this.companyService.Update(this.customer)
 			.subscribe((data: Customer) => this.customer = data);
 	}

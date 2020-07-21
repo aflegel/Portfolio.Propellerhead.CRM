@@ -50,26 +50,16 @@ namespace Propellerhead.Crm.DataLayer.Services
 			if (record != null)
 			{
 				CustomerContext.Entry(record).CurrentValues.SetValues(customer);
+				record.Updated = DateTime.Now;
 
+				foreach (var note in customer.Notes)
+				{
+					await UpdateNote(note);
+				}
 
 				await CustomerContext.SaveChangesAsync();
 
 				return record;
-
-				////update each note
-				//foreach (var note in customer.Notes)
-				//{
-				//	if (note.NoteId > 0)
-				//	{
-				//		CustomerContext.Entry(note).State = EntityState.Modified;
-				//	}
-				//	else
-				//	{
-				//		//if the note is new, add a created date
-				//		note.Created = DateTime.Now;
-				//	}
-				//}
-				//return record;
 			}
 			else
 			{
@@ -80,6 +70,22 @@ namespace Propellerhead.Crm.DataLayer.Services
 				await CustomerContext.SaveChangesAsync();
 
 				return newrecord.Entity;
+			}
+		}
+
+		private async Task UpdateNote(Note note)
+		{
+			var record = await CustomerContext.Notes.FirstOrDefaultAsync(w => w.NoteId == note.NoteId);
+
+			if (record != null)
+			{
+				CustomerContext.Entry(record).CurrentValues.SetValues(note);
+			}
+			else
+			{
+				//if the note is new, add a created date
+				note.Created = DateTime.Now;
+				CustomerContext.Notes.Add(note);
 			}
 		}
 	}

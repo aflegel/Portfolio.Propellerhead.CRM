@@ -1,5 +1,4 @@
 ﻿import { Note } from "./Note";
-import { Status } from "./Status";
 
 export interface CustomerSearch {
 	query: string;
@@ -22,4 +21,6 @@ export interface Customer {
 	updated: Date;
 
 	notes: Note[];
+
+	status?: { label: string };
 }

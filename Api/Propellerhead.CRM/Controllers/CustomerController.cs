@@ -17,7 +17,7 @@ namespace Propellerhead.Crm.Controllers
 		public CustomerController(ICustomerService context) => CustomerService = context;
 
 		// GET: api/values
-		[HttpPost()]
+		[HttpPost]
 		public ActionResult<IEnumerable<Customer>> Index([FromBody] SearchModel index) => Ok(CustomerService.Search(index.Query.BuildKeywords(), index.Sort));
 
 		/// <summary>
@@ -34,11 +34,6 @@ namespace Propellerhead.Crm.Controllers
 		/// <param name="id"></param>
 		/// <param name="customer"></param>
 		[HttpPut("{id}")]
-		public async Task<ActionResult<Customer>> Put(int id, [FromBody] Customer customer)
-		{
-			customer.Updated = DateTime.Now;
-
-			return await CustomerService.Update(customer);
-		}
+		public async Task<ActionResult<Customer>> Put(int _, [FromBody] Customer customer) => await CustomerService.Update(customer);
 	}
 }

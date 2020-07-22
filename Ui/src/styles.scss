@@ -1,0 +1,33 @@
+﻿body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+	background-image: url('assets/Elevator.svg');
+	background-repeat: no-repeat;
+	background-position: bottom left 3%;
+	background-size: 10%;
+	padding-bottom: 3%;
+}
+
+.body-flex {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.row.row-compact {
+	margin-bottom: 0;
+}
+
+ul.collection.with-header li.collection-item:hover {
+	background-color: #EFFAFF;
+}
+
+input.validate.invalid + span.helper-text {
+	font-size: 12px;
+	color: #F44336;
+}

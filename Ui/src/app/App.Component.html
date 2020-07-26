@@ -1,24 +1,18 @@
-﻿<header>
-	<nav>
-		<div class="nav-wrapper blue-grey darken-3">
-			<div class="container">
-				<a routerLink="/" routerLinkActive="active" class="brand-logo">Portfolio CRM</a>
-			</div>
-		</div>
-	</nav>
-</header>
-<main class="page-fill light-blue lighten-3">
-	<div class="container">
+﻿<div>
+	<mat-toolbar color="primary">
+		<button mat-icon-button (click)="router.navigate(['/'])">
+			<mat-icon>home</mat-icon>
+		</button>
+		<span>{{ titleService.getTitle() }}</span>
+	</mat-toolbar>
+
+	<main>
 		<router-outlet></router-outlet>
-	</div>
-</main>
-<footer class="page-footer light-green darken-2">
-	<div class="footer-copyright">
-		<div class="container">
-			&copy; 2018 BoutinFlegel
-			<span class="right right-align" (click)="Portrait()">
-				Angular@{{version}}
-			</span>
-		</div>
-	</div>
-</footer>
+	</main>
+</div>
+<mat-toolbar color="accent">
+	&copy; 2018 BoutinFlegel
+	<span class="right right-align" (click)="router.navigate(['/portrait'])">
+		Angular@{{version}}
+	</span>
+</mat-toolbar>

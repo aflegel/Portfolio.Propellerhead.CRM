@@ -30,26 +30,6 @@ export class HomeComponent implements OnInit {
 	}
 
 	/**
-	 * Routes the app to the customer record with id.
-	 * @param event
-	 * @param customer
-	 */
-	public Load(event: Event, customer: Customer): void {
-		event.preventDefault();
-
-		this.router.navigate(["/customer/", customer.customerId]);
-	}
-
-	/**
-	 * Routes the app to a new customer page.
-	 * @param event
-	 * @param customer
-	 */
-	public Add(event: Event): void {
-		this.Load(event, { customerId: 0 } as Customer);
-	}
-
-	/**
 	 * An extension of Get that halts anchor events.
 	 * @param event
 	 */

@@ -37,7 +37,8 @@
   },
   "repository": {},
   "scripts": {
-    "start": "ng serve",
+	"start": "ng serve",
+	"start:server": "dotnet run --project ..\\Api\\Propellerhead.CRM\\Propellerhead.CRM.csproj",
     "build": "ng build --extract-css",
     "test": "ng test",
     "lint": "ng lint"

@@ -6,7 +6,7 @@ import { CustomerService } from "../Services/Customer.Service";
 import { Customer } from "../Models/Customer";
 import { Status } from "../Models/Status";
 import { StatusService } from "../Services/Status.Service";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 
 @Component({
 	selector: "customer-edit",
@@ -36,7 +36,8 @@ export class EditComponent implements OnInit {
 			name: new FormControl("", [Validators.required]),
 			contactEmail: new FormControl("", [Validators.required, Validators.email]),
 			contactName: new FormControl("", []),
-			status: new FormControl("", [Validators.required])
+			status: new FormControl("", [Validators.required]),
+			notes: new FormArray([])
 		});
 
 		if (customerId) {
@@ -95,16 +96,13 @@ export class EditComponent implements OnInit {
 	public AddNote(event: Event): void {
 		event.preventDefault();
 
-		if (this.customerForm.invalid) { return; }
+		//if (this.customerForm.invalid) { return; }
 
-		// if any notes are invalid prevent adding a new note
-		for (const note of this.customer.notes) {
-			/*if (!note.IsValid()) {
-				return;
-			}*/
-		}
-
-		this.customer.notes.push({ noteId: 0, content: "", created: new Date(Date.now()) });
+		(this.customerForm.controls.notes as FormArray).push(
+			new FormGroup({
+				noteId: new FormControl(""),
+				text: new FormControl("", Validators.required)
+			}));
 	}
 
 	private Set(customer: Customer): void {

@@ -49,8 +49,21 @@
 						<mat-label>Updated</mat-label>
 						<input matInput disabled [value]="customer.updated">
 					</mat-form-field>
+
+					<div [formGroup]="customerForm.controls.notes.controls[i]" *ngFor="let note of customerForm.controls.notes.controls; index as i">
+						<input type="hidden" value="" formControlName="noteId" />
+						<mat-form-field>
+							<mat-label>Notes</mat-label>
+							<input matInput formControlName="text">
+							<mat-error *ngIf="hasError('notes','required')">
+								Note is <strong>required</strong>
+							</mat-error>
+						</mat-form-field>
+					</div>
+
 				</mat-card-content>
 				<mat-card-actions>
+					<button mat-button (click)="AddNote($event)">Add</button>
 
 				</mat-card-actions>
 			</mat-card>

@@ -9,7 +9,6 @@ import { MaterialModule } from "./Material.Module";
 
 import { AppComponent } from "./App.Component";
 import { EditComponent } from "./Customer/Edit.Component";
-import { EditNoteComponent } from "./Customer/EditNote.Component";
 import { HomeComponent } from "./Home/Home.Component";
 import { PortraitComponent } from "./Home/Portrait.Component";
 import { CustomerService } from "./Services/Customer.Service";
@@ -28,7 +27,6 @@ import { StatusService } from "./Services/Status.Service";
 		AppComponent,
 		HomeComponent,
 		PortraitComponent,
-		EditNoteComponent,
 		EditComponent,
 	],
 	entryComponents: [

@@ -2,6 +2,7 @@
 import { Router } from "@angular/router";
 import { CustomerService } from "../Services/Customer.Service";
 import { CustomerSearch, Customer, CustomerIndex } from "../Models/Customer";
+import { FormControl } from "@angular/forms";
 
 @Component({
 	selector: "home-index",
@@ -11,8 +12,10 @@ import { CustomerSearch, Customer, CustomerIndex } from "../Models/Customer";
 export class HomeComponent implements OnInit {
 
 	public customerList: Array<Customer>;
-	public query: string;
 	public sort: string;
+
+	public search: FormControl;
+
 	public errorMessage: string;
 
 	public nameSort = "name-ascending";
@@ -21,7 +24,7 @@ export class HomeComponent implements OnInit {
 	public updatedSort = "updated-ascending";
 
 	constructor(public router: Router, private customerService: CustomerService) {
-		this.query = "";
+		this.search = new FormControl("");
 		this.sort = "";
 	}
 
@@ -56,7 +59,7 @@ export class HomeComponent implements OnInit {
 	private Get(): void {
 		// Filtering and sorting is performed server side.  When pagination is introduced the client will only receive a subset of records.
 		const indexData: CustomerSearch = {
-			query: this.query,
+			query: this.search.value,
 			sort: this.sort
 		};
 
@@ -71,7 +74,7 @@ export class HomeComponent implements OnInit {
 	 */
 	private Set(data: CustomerSearch & CustomerIndex): void {
 		this.customerList = data.customers;
-		this.query = data.query;
+		this.search.patchValue(data.query);
 		this.sort = data.sort;
 
 		// this swaps the current sort for the opposing sort the next time it is clicked

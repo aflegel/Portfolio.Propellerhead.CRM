@@ -7,7 +7,7 @@
 	<form>
 		<mat-form-field>
 			<mat-label>Search</mat-label>
-			<input type="text" matInput formControlName="query">
+			<input type="text" matInput [formControl]="search" (keydown.enter)="Search($event)">
 			<mat-icon matSuffix>search</mat-icon>
 		</mat-form-field>
 	</form>

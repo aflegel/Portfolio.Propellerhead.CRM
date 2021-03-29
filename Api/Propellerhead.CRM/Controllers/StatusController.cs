@@ -8,9 +8,9 @@ namespace Propellerhead.Crm.Controllers
 	[Route("[controller]")]
 	public class StatusController : ControllerBase
 	{
-		private ICustomerService CustomerService { get; }
+		private CustomerService CustomerService { get; }
 
-		public StatusController(ICustomerService context) => CustomerService = context;
+		public StatusController(CustomerService context) => CustomerService = context;
 
 		[HttpGet]
 		public ActionResult<IEnumerable<Status>> Get() => Ok(CustomerService.Statuses);

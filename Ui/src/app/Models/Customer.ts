@@ -17,8 +17,8 @@ export interface Customer {
 	contactName: string; // required
 	contactEmail: string; // required
 
-	created: Date;
-	updated: Date;
+	created?: Date;
+	updated?: Date;
 
 	notes: Note[];
 

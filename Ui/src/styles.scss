@@ -1,33 +1,40 @@
-﻿body {
+﻿@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core;
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$portfolio-app-primary: mat-palette($mat-blue-grey, 700, A100, A500);
+$portfolio-app-accent: mat-palette($mat-light-green, 600, A100, A800);
+
+// The warn palette is optional (defaults to red).
+$portfolio-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$portfolio-app-theme: mat-light-theme($portfolio-app-primary, $portfolio-app-accent, $portfolio-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($portfolio-app-theme);
+
+body {
+	//background-color: $mat-app-background;
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
+	margin: 0;
 }
 
 main {
-	flex: 1 0 auto;
 	background-image: url('assets/Elevator.svg');
 	background-repeat: no-repeat;
 	background-position: bottom left 3%;
 	background-size: 10%;
 	padding-bottom: 3%;
-}
-
-.body-flex {
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
-}
-
-.row.row-compact {
-	margin-bottom: 0;
-}
-
-ul.collection.with-header li.collection-item:hover {
-	background-color: #EFFAFF;
-}
-
-input.validate.invalid + span.helper-text {
-	font-size: 12px;
-	color: #F44336;
 }

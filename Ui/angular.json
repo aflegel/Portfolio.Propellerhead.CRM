@@ -22,10 +22,6 @@
 							"src/assets"
 						],
 						"styles": [
-							{
-								"input": "node_modules/materialize-css/dist/css/materialize.min.css",
-								"inject": true
-							},
 							"src/styles.scss"
 						],
 						"scripts": []

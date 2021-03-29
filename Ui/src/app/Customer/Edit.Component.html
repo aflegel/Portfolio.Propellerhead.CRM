@@ -1,93 +1,73 @@
-﻿<form #EditCustomer="ngForm">
+﻿<form [formGroup]="customerForm">
 	<div class="row" *ngIf="customer != null">
 		<div class="col s12">
-			<div class="card">
-				<div class="card-content">
-					<span class="card-title">Edit Customer</span>
 
-					<div *ngIf="errorMessage != null" class="card-panel red darken-4">
-						<p>Error:</p>
-						<pre class="text-danger">{{ errorMessage }}</pre>
+			<mat-card fxFlex="500px" fxFlex.xs="100%">
+				<mat-card-title>{{customer.name || "New Customer"}}</mat-card-title>
+				<mat-card-content>
+					<input formControlName="customerId" type="hidden">
+
+					<mat-form-field>
+						<mat-label>Name</mat-label>
+						<input matInput formControlName="name">
+						<mat-error *ngIf="hasError('name','required')">
+							Name is <strong>required</strong>
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Contact Email</mat-label>
+						<input matInput formControlName="contactEmail">
+						<mat-error *ngIf="hasError('contactEmail', 'email') && !hasError('contactEmail', 'required')">
+							Please enter a valid email address
+						</mat-error>
+						<mat-error *ngIf="hasError('contactEmail','required')">
+							Email is <strong>required</strong>
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Contact Name</mat-label>
+						<input matInput formControlName="contactName">
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Status</mat-label>
+						<mat-select formControlName="status">
+							<mat-option *ngFor="let status of statuses" [value]="status.statusId">
+								{{status.label}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Created</mat-label>
+						<input matInput disabled [value]="customer.updated">
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Updated</mat-label>
+						<input matInput disabled [value]="customer.updated">
+					</mat-form-field>
+
+					<div [formGroup]="customerForm.controls.notes.controls[i]" *ngFor="let note of customerForm.controls.notes.controls; index as i">
+						<input type="hidden" value="" formControlName="noteId" />
+						<mat-form-field>
+							<mat-label>Notes</mat-label>
+							<input matInput formControlName="text">
+							<mat-error *ngIf="hasError('notes','required')">
+								Note is <strong>required</strong>
+							</mat-error>
+						</mat-form-field>
 					</div>
 
-					<div class="row">
-						<div class="col s12 m6">
-							<div class="row">
-								<div class="col s12">
-									<label for="name">Name</label>
-									<input type="text" class="validate" [(ngModel)]="customer.name" name="name" required
-										placeholder="Name" #name="ngModel" />
-									<span class="helper-text" *ngIf="name.invalid && name.errors.required">Required</span>
+				</mat-card-content>
+				<mat-card-actions>
+					<button mat-button (click)="AddNote($event)">Add</button>
 
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="contactName">Contact Name</label>
-									<input type="text" class="validate" [(ngModel)]="customer.contactName"
-										name="contactName" placeholder="Contact" #contactName="ngModel" />
-									<span class="helper-text" *ngIf="contactName.invalid && contactName.errors.required">Required</span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="contactEmail">Contact Email</label>
-									<input type="email" required class="validate" [(ngModel)]="customer.contactEmail"
-										name="contactEmail" placeholder="Email" #contactEmail="ngModel" />
-									<span class="helper-text"
-										*ngIf="contactEmail.invalid && contactEmail.errors.required">Required</span>
-									<span class="helper-text"
-										*ngIf="contactEmail.invalid && contactEmail.errors.email">Invalid Email</span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="contactEmail">Status</label>
-									<select class="browser-default" [(ngModel)]="customer.statusId" name="statusId">
-										<option *ngFor="let status of statuses" value="{{status.statusId}}">
-											{{status.label}}</option>
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="created">Created</label>
-									<input type="text" disabled [value]="customer.created | date:'medium'"
-										name="created" placeholder="Created" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12">
-									<label for="updated">Updated</label>
-									<input type="text" disabled [value]="customer.updated | date:'medium'"
-										name="updated" placeholder="Updated" />
-								</div>
-							</div>
-						</div>
+				</mat-card-actions>
+			</mat-card>
 
-
-						<div class="col s12 m6">
-							<div class="row">
-								<div class="col s12">
-									<label for="updated">Notes</label>
-									<ul class="collection" *ngIf="customer.notes != null && customer.notes.length > 0">
-										<li class="collection-item" customer-edit-note
-											*ngFor="let note of customer.notes" [note]="note"></li>
-									</ul>
-								</div>
-							</div>
-							<a href="#" class="btn-floating right red" (click)="AddNote($event)"><i
-									class="material-icons">add</i></a>
-						</div>
-					</div>
-
-					<div class="card-action">
-						<div class="col s12">
-							<a href="#" (click)="Update($event)">Update</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="center-align" *ngIf="customer == null">

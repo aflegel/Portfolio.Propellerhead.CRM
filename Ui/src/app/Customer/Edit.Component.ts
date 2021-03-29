@@ -4,10 +4,9 @@ import { ActivatedRoute } from "@angular/router";
 import { CustomerService } from "../Services/Customer.Service";
 
 import { Customer } from "../Models/Customer";
-import { Note } from "../Models/Note";
 import { Status } from "../Models/Status";
 import { StatusService } from "../Services/Status.Service";
-import { NgForm } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 
 @Component({
 	selector: "customer-edit",
@@ -20,8 +19,7 @@ export class EditComponent implements OnInit {
 	public statuses: Status[];
 	public errorMessage: string;
 
-	@ViewChild("EditCustomer") public customerForm: NgForm;
-
+	public customerForm: FormGroup;
 
 	constructor(public route: ActivatedRoute, private companyService: CustomerService, private statusService: StatusService) {
 		this.statuses = [];
@@ -33,21 +31,32 @@ export class EditComponent implements OnInit {
 
 		this.GetStatus();
 
+		this.customerForm = new FormGroup({
+			customerId: new FormControl("", []),
+			name: new FormControl("", [Validators.required]),
+			contactEmail: new FormControl("", [Validators.required, Validators.email]),
+			contactName: new FormControl("", []),
+			status: new FormControl("", [Validators.required]),
+			notes: new FormArray([])
+		});
+
 		if (customerId) {
 			this.Get(customerId);
 		}
 		else {
-			this.customer = {
+			this.Set({
 				customerId: -1,
 				name: "",
 				contactName: "",
 				contactEmail: "",
 				notes: [],
-				created: new Date(Date.now()),
-				updated:  new Date(Date.now()),
 				statusId: 1,
-			};
+			});
 		}
+	}
+
+	public hasError = (controlName: string, errorName: string): boolean => {
+		return this.customerForm.controls[controlName].hasError(errorName);
 	}
 
 	/**
@@ -56,7 +65,7 @@ export class EditComponent implements OnInit {
 	 */
 	public Get(id: number): void {
 		this.companyService.Get(id)
-			.subscribe((data: Customer) => this.customer = data);
+			.subscribe((data: Customer) => this.Set(data));
 	}
 
 	public GetStatus(): void {
@@ -87,15 +96,23 @@ export class EditComponent implements OnInit {
 	public AddNote(event: Event): void {
 		event.preventDefault();
 
-		if (this.customerForm.invalid) { return; }
+		//if (this.customerForm.invalid) { return; }
 
-		// if any notes are invalid prevent adding a new note
-		for (const note of this.customer.notes) {
-			/*if (!note.IsValid()) {
-				return;
-			}*/
-		}
+		(this.customerForm.controls.notes as FormArray).push(
+			new FormGroup({
+				noteId: new FormControl(""),
+				text: new FormControl("", Validators.required)
+			}));
+	}
 
-		this.customer.notes.push({ noteId: 0, content: "", created: new Date(Date.now()) });
+	private Set(customer: Customer): void {
+		this.customer = customer;
+		this.customerForm.patchValue({
+			customerId: customer.customerId,
+			name: customer.name,
+			contactEmail: customer.contactEmail || "",
+			contactName: customer.contactName,
+			status: customer.statusId
+		});
 	}
 }

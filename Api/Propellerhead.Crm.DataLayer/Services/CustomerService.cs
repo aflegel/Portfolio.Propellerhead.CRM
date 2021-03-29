@@ -9,7 +9,7 @@ using Propellerhead.Crm.DataLayer.Models;
 
 namespace Propellerhead.Crm.DataLayer.Services
 {
-	public class CustomerService : ICustomerService
+	public class CustomerService
 	{
 		private CustomerContext CustomerContext { get; }
 

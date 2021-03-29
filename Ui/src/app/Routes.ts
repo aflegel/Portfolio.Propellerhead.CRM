@@ -11,4 +11,4 @@ const appRoutes: Routes = [
 	{ path: "portrait", component: PortraitComponent, data: { title: "Portrait" } }
 ];
 
-export const AppRoutes = RouterModule.forRoot(appRoutes);
+export const AppRoutes = RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' });

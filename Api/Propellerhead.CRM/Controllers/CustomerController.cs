@@ -12,9 +12,9 @@ namespace Propellerhead.Crm.Controllers
 	[Route("[controller]")]
 	public class CustomerController : ControllerBase
 	{
-		private ICustomerService CustomerService { get; }
+		private CustomerService CustomerService { get; }
 
-		public CustomerController(ICustomerService context) => CustomerService = context;
+		public CustomerController(CustomerService context) => CustomerService = context;
 
 		// GET: api/values
 		[HttpPost]

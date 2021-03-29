@@ -22,7 +22,6 @@
     "@angular/platform-browser-dynamic": "^11.2.7",
     "@angular/router": "^11.2.7",
     "core-js": "^3.6.5",
-    "materialize-css": "^1.0.0",
     "rxjs": "^6.6.7",
     "zone.js": "^0.10.3"
   },
@@ -37,8 +36,8 @@
   },
   "repository": {},
   "scripts": {
-	"start": "ng serve",
-	"start:server": "dotnet run --project ..\\Api\\Propellerhead.CRM\\Propellerhead.CRM.csproj",
+    "start": "ng serve",
+    "start:server": "dotnet run --project ..\\Api\\Propellerhead.CRM\\Propellerhead.CRM.csproj",
     "build": "ng build --extract-css",
     "test": "ng test",
     "lint": "ng lint"
